@@ -1,0 +1,18 @@
+{% extends "default.html" %}
+{% block main %}
+    <section>
+      <h1>Python Notebooks</h1>
+      <p>On this page, you can find a list of Marimo notebooks that are
+      supplementary material for the course.</p>
+
+      {% for lecture, notebooks in data.items() %}
+      <h2>{{ lecture | title }}</h2>
+      <ul>
+        {% for notebook in notebooks %}
+        {% set url_notebook = 'https://raw.githubusercontent.com/klb2/tsks15/refs/heads/master/notebooks/' ~ lecture ~ '/' ~ notebook %}
+        <li><a href="https://marimo.app/?src={{ url_notebook | urlencode }}">{{ notebook }}</a></li>
+        {% endfor %}
+      </ul>
+      {% endfor %}
+		</section>
+{% endblock %}

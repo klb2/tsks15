@@ -1,0 +1,241 @@
+- type: lecture
+  time: "2025-09-01T13:15/15:00"
+  room: "T27"
+  topics:
+    - Introduction and overview of the course.
+    - Model-based versus data-driven inference.
+    - Introduction to detection theory.
+    - "Orthodox approach to detection: Neyman-Pearson theorem, probability of detection and false alarm, and receiver operating characteristic (ROC)."
+    - "Bayesian approach to detection: Bayesian cost. Probability of error."
+  reading:
+    - Kay-II Chapter 1, Sections 3.1-3.7
+
+- type: lecture
+  time: "2025-09-03T08:15/10:00"
+  room: "S37"
+  topics:
+    - "Detection of deterministic vector signals in white Gaussian noise."
+    - "Dealing with colored noise. Pre-whitening."
+    - "Matched filter."
+  reading:
+    - Kay-II Sections 4.1-4.4, 4.6
+    - Supplementary material
+
+- type: lecture
+  time: "2025-09-05T13:15/15:00"
+  room: "S35"
+  topics:
+    - Detection of random Gaussian signals in Gaussian noise.
+    - Optimal detector and its performance.
+    - Special cases and examples.
+  reading:
+    - Kay-II Sections 5.1-5.4, 5.6-5.7
+    - Supplementary material
+
+- type: lecture
+  time: "2025-09-08T13:15/15:00"
+  room: "T23"
+  topics:
+    - Contrasting the orthodox and Bayesian approach.
+    - Detection with M>2 hypotheses.
+    - Deterministic vector signals in white Gaussian noise.
+    - Special cases and examples.
+  reading:
+    - Kay-II Sections 3.8, 4.5, 4.7
+
+- type: tutorial
+  time: "2025-09-08T15:15/17:00"
+  room: "T23"
+  topics:
+    - "Walk-through by the instructor: Monte-Carlo simulation + Kay-II problem 3.6"
+    - "Problems, from Kay-II: 1.2, 3.4, 3.14, 4.6, 4.8, 4.15, 4.16, 4.19"
+    - 'Problems, from the "additional problems" document: #1'
+
+- type: lecture
+  time: "2025-09-10T08:15/10:00"
+  room: "T27"
+  topics:
+    - Introduction to estimation theory.
+    - Orthodox versus Bayesian approach.
+    - "Performance metrics: bias, variance, MSE, BMSE."
+    - Cramer-Rao bound (CRB) and efficiency.
+  reading:
+    - Kay-I Chapters 1-2, Sections 3.1-3.5
+
+- type: lecture
+  time: "2025-09-12T13:15/15:00"
+  room: "T27"
+  topics:
+    - CRB for vector parameters.
+    - Slepian-Bang's formula.
+    - Nuisance parameters and decoupling.
+    - "Application example: source localization using time-of-arrival measurements."
+    - CRB for the linear model with Gaussian noise.
+  reading:
+    - Kay-I Sections 3.6-3.9, 3.11
+
+- type: lab
+  time: "2025-09-15T13:15/15:00"
+  room: "Asgård, Egypten"
+  topics:
+    - ...
+
+- type: lab
+  time: "2025-09-16T17:15/19:00"
+  room: "Egypten, Olympen"
+  topics:
+    - ...
+
+- type: tutorial
+  time: "2025-09-17T08:15/10:00"
+  room: "S7"
+  topics:
+    - "Walk-through by the instructor: Kay-I problem 1.4"
+    - "Problems, from Kay-II: 5.2, 5.3, 5.10, 5.14, 5.18"
+    - "Problems, from Kay-I: 1.1, 1.5, 2.9"
+    - 'Problems, from the "additional problems" document: #2'
+
+- type: tutorial
+  time: "2025-09-19T13:15/15:00"
+  room: "S3"
+  topics:
+    - "Walk-through by the instructor: Kay-I: 3.15, 6.15"
+    - "Problems, from Kay-I: 3.1, 3.19, 3.9, 4.11, 6.1, 6.3, 6.16"
+    - 'Problems, from the "additional problems" document: #3'
+
+- type: lecture
+  time: "2025-09-22T13:15/15:00"
+  room: "R44"
+  topics:
+    - "MVU estimator for linear model with Gaussian noise."
+    - "BLUE estimator for linear model with arbitrary noise."
+    - "Application example: tapped-delay line identification."
+    - "Application example: two-tone model with sinusoids in noise."
+  reading:
+    - Kay-I Chapters 4, 6
+
+- type: lab
+  time: "2025-09-22T17:15/19:00"
+  room: "Egypten, Olympen"
+  topics:
+    - ...
+
+- type: lab
+  time: "2025-09-24T08:15/10:00"
+  room: "Asgård, Egypten"
+  topics:
+    - ...
+
+- type: lecture
+  time: "2025-09-26T13:15/15:00"
+  room: "S3"
+  topics:
+    - Maximum-likelihood estimation.
+    - Asymptotic efficiency.
+    - Parameter transformations.
+  reading:
+    - Kay-I Sections 7.1-7.8, 7.10
+
+- type: lecture
+  time: "2025-09-29T13:15/15:00"
+  room: "T11"
+  topics:
+    - Linear and non-linear least-squares.
+    - Separable models.
+    - Method of moments.
+    - First-order approximations.
+  reading:
+    - Kay-I Sections 8.1-8.4, 8.9, 9.1-9.5
+
+- type: lab
+  time: "2025-09-29T15:15/17:00"
+  room: "SU24, SU25"
+  topics:
+    - ...
+
+- type: lab
+  time: "2025-09-30T17:15/19:00"
+  room: "Asgård, Egypten"
+  topics:
+    - ...
+
+- type: tutorial
+  time: "2025-10-01T08:15/10:00"
+  room: "T27"
+  topics:
+     - 'Walk-through by the instructor: periodogram example + Kay-I problem 7.3'
+     - 'Problems, from Kay-I: 7.1, 7.10, 7.20'
+     - 'Problems, from the "additional problems" document: #4'
+     - 'Backup time.'
+
+- type: lecture
+  time: "2025-10-03T13:15/PT1H45M"
+  room: "T27"
+  topics:
+    - Bayesian estimation.
+    - MMSE and LMMSE estimators.
+    - Nuisance parameters in the Bayesian and orthodox paradigms.
+  reading:
+    - Kay-I Sections 10.1-10.7, Chapter 11, Sections 12.1-12.3, 12.5
+
+- type: lecture
+  time: "2025-10-06T13:15/PT1H45M"
+  room: "T19"
+  topics:
+    - Bayesian estimation.
+    - MMSE and LMMSE estimators.
+    - Nuisance parameters in the Bayesian and orthodox paradigms.
+  reading:
+    - Kay-I Sections 10.1-10.7, Chapter 11, Sections 12.1-12.3, 12.5
+
+- type: tutorial
+  time: "2025-10-06T15:15/PT1H45M"
+  room: "T27"
+  topics:
+    - 'Walk-through by the instructor: Kay-I problem 7.9'
+    - 'Problems, from Kay-I: 8.1, 8.3, 8.5, 8.7, 9.1, 9.7'
+
+- type: tutorial
+  time: "2025-10-08T08:15/PT1H45M"
+  room: "T27"
+  topics:
+    - 'Walk-through by the instructor: Kay-I problem 11.3'
+    - 'Problems, from Kay-I: 10.6, 10.9, 10.11, 11.9, 11.16, 12.2'
+    - 'Problems, from the "additional problems" document: #5'
+
+- type: lecture
+  time: "2025-10-10T13:15/PT1H45M"
+  room: "KY31"
+  topics:
+    - Detection of signals with unknown parameters.
+    - Generalized likelihood ratio test (GLRT).
+    - GLRT for linear model with Gaussian noise.
+  reading:
+    - Kay-II Sections 6.1-6.4, 7.1-7.6
+
+- type: tutorial
+  time: "2025-10-13T13:15/PT1H45M"
+  room: "S25"
+  topics:
+    - 'Walk-through by the instructor: 7.2'
+    - 'Problems, from Kay-II: 6.6, 6.10, 7.1, 7.3, 7.9, 7.7, 7.10'
+
+- type: lab
+  time: "2025-10-15T08:15/PT1H45M"
+  room: "Asgård, Egypten"
+  topics:
+    - ...
+
+- type: lab
+  time: "2025-10-17T13:15/PT1H45M"
+  room: "Asgård, Egypten"
+  topics:
+    - ...
+
+- type: tutorial
+  time: "2025-10-20T13:15/PT1H45M"
+  room: "T23"
+  topics:
+    - 'Walk-through by the instructor: 8.7'
+    - 'Problems, from Kay-II: 7.23, 7.25, 8.8, 9.4, 9.11, 9.13'
+    - 'Problems, from the "additional problems" document: #6'

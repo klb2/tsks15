@@ -1,0 +1,44 @@
+{% extends "default.html" %}
+{% block main %}
+    <section id="lecture-plan">
+		<h1>Lecture & Tutorial Plan</h1>
+    <table>
+			<thead>
+				<tr>
+					<th>Session</th>
+					<th>Time</th>
+					<th>Topics</th>
+					<th>Reading</th>
+				</tr>
+			</thead>
+			<tbody>
+        {% set schedule = data %}
+        {% set schedule = schedule | sort(attribute='start_time') %}
+        {% for session in schedule if (session['type'] != "lab") %}
+          {% set start_time = session['start_time'] %}
+          {% set end_time = session['end_time'] %}
+          <tr class="session{% if now > start_time %} past-event{% endif %}">
+            <td class="session-title">{{ session["title"] }}</td>
+            <td class="session-time">{{ start_time.strftime("%B&nbsp;%d, %H") }}&ndash;{{ end_time.strftime("%H") }}</td>
+            <td class="session-topics">
+            <ul>
+              {% for topic in session['topics'] %}
+              <li>{{- topic -}}</li>
+              {% endfor %}
+            </ul>
+            </td>
+            <td class="session-reading">
+            {% if session.get('reading') %}
+            <ul>
+              {% for read in session['reading'] %}
+              <li>{{ read }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+		</section>
+{% endblock %}

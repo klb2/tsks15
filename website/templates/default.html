@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
+    <meta name="author" content="Karl-Ludwig Besser">
+    <title>{{ course_info["code"] }}: {{ course_info["name"] }} ({{ course_info["term"] }}) &ndash; {{ page_name }}</title>
+		<link rel="stylesheet" href="main.css">
+	</head>
+	<body class="container">
+		<nav>
+			<ul>
+				<li><a href="index.html">General Information</a></li>
+				<li><a href="schedule.html">Schedule</a></li>
+				<li><a href="labs.html">Labs</a></li>
+        <li><a href="notebooks.html">Notebooks</a></li>
+			</ul>
+		</nav>
+
+		<main>
+    {% block main required %}{% endblock %}
+		</main>
+
+		<footer class="latest-update"><p>Latest update: {{ now.strftime("%B&nbsp;%d, %Y (%H:%M)") }}</p></footer>
+	</body>
+</html>
+

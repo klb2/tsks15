@@ -1,0 +1,41 @@
+{% extends "default.html" %}
+{% block main %}
+    <section>
+      <h1>General Information</h1>
+      <p>Welcome to {{ course_info["code"] }} <i>{{ course_info["name"] }}</i> ({{ course_info["term"] }}).</p>
+      <p>{{ data["topics"] }}</p>
+
+      <h2>Prerequisites</h2>
+      <ul>
+        {% for skill in data["prerequisites"] %}
+        <li>{{ skill }}</li>
+        {% endfor %}
+      </ul>
+
+      {% if data["review"] %}
+      <p>As preparation for the course, all students should review the following concepts:</p>
+      <ul>
+        {% for rev in data["review"] %}
+        <li>{{ rev }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      <h2>Instructors</h2>
+      <ul>
+        <li>Lectures: {{ data["instructors"]["lectures"] }}</li>
+        <li>Tutorials: {{ data["instructors"]["tutorials"] }}</li>
+        <li>Labs: {{ data["instructors"]["labs"] }}</li>
+      </ul>
+
+      <h2>Textbooks</h2>
+      <ul>
+        {% for book in data["literature"] %}
+        <li>{{ book }}</li>
+        {% endfor %}
+      </ul>
+
+      <h2>Exam</h2>
+      <p>{{ data["exam"] }}</p>
+		</section>
+{% endblock %}

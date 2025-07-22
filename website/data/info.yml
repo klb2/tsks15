@@ -1,0 +1,30 @@
+general_info:
+  name: "Detection and Estimation of Signals"
+  code: "TSKS15"
+  term: "HT 2025"
+  lisam: ""
+topics: >
+  This course treats statistical signal processing, specifically parameter
+  estimation and detection of signals. The purpose of the course is to provide
+  a solid foundation in algorithms, models, methods and theory for the
+  extraction of information from noisy signals. Applications are found for
+  example within radar systems, communications systems, positioning systems and
+  image analysis.
+prerequisites:
+  - Linear algebra
+  - Probability theory
+  - General mathematical maturity and understanding of electrical/systems engineering
+  - Programming skills (Python or Matlab)
+review:
+  - Vectors, matrices, transpose, inverse, determinant, positive (semi-)definite forms, ...
+  - Vector-valued random variables, (multivariate) Gaussian distributions
+  - Mean and covariance, statistical independence
+  - Conditional and marginal probability, Bayes rule
+instructors:
+  lectures: "Karl-Ludwig Besser"
+  tutorials: "Jianan Bai"
+  labs: "Jianan Bai"
+literature:
+  - "S. Kay, <i>Statistical Signal Processing: Estimation Theory (Volume I)</i>, Prentice-Hall"
+  - "S. Key, <i>Statistical Signal Processing: Detection Theory (Volume II)</i>, Prentice-Hall"
+exam: "There will be a written exam."

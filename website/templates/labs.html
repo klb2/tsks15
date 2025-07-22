@@ -1,0 +1,26 @@
+{% extends "default.html" %}
+{% block main %}
+    <section>
+      <h1>Labs</h1>
+      <ul>
+        <li>Sign up to lab sessions via <a href="{{ course_info['lisam'] }}">Lisam</a>.</li>
+        <li>Each lab has a session to get started with the work and a session for the in-class oral exam.</li>
+        <li>The teaching assistant is available to help &ndash; please make an appointment by email.</li>
+      </ul>
+
+      {% for lab in data %}
+      <h2 id="lab{{- lab['id'] -}}">{{ lab["title"] }}</h2>
+      <ul>
+        <li>Topic: {{ lab["topic"] }}</li>
+        <li>Material/Instructions: <a href="{{ lab['url'] }}">{{ lab['url'] }}</a></li>
+        <li>Preparation:
+          <ul>
+            {% for prep in lab["preparation"] %}
+            <li>{{ prep }}</li>
+            {% endfor %}
+          </ul>
+        </li>
+      </ul>
+      {% endfor %}
+		</section>
+{% endblock %}

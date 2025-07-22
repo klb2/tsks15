@@ -1,0 +1,15 @@
+- id: 1
+  title: "Lab 1"
+  url: ""
+  topic: "Detection of Melodies"
+  preparation:
+  - "Make sure to first review the material on Monte-Carlo simulation (Tutorial #1)"
+  - "Recap the fundamental concepts from the first few lectures"
+
+- id: 2
+  title: "Lab 2"
+  url: ""
+  topic: "Range Estimation"
+  preparation:
+  - "Recap the basics of estimation theory, such as ML estimation and CRB"
+
