@@ -1,4 +1,5 @@
 import os.path
+from zoneinfo import ZoneInfo
 
 DIR_TEMPLATES = "templates"
 DIR_PUBLIC = "public"
@@ -14,3 +15,5 @@ MAP_SESSION_TYPE = {
     "tutorial": "Tutorial",
     "lab": "Lab",
 }
+
+TIMEZONE = ZoneInfo("Europe/Stockholm")

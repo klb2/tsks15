@@ -1,6 +1,6 @@
 import os
 import re
-from datetime import date, datetime, timedelta
+from datetime import datetime, timedelta
 import itertools
 
 import jinja2
@@ -15,6 +15,7 @@ from constants import (
     FILE_INFO,
     FILE_LABS,
     MAP_SESSION_TYPE,
+    TIMEZONE,
 )
 
 DIR_HERE = os.path.dirname(__file__)
@@ -38,6 +39,7 @@ def create_schedule():
         for num_session, session in enumerate(g):
             _start_time, _end_time = session["time"].split("/", 1)
             start_time = datetime.fromisoformat(_start_time)
+            start_time = start_time.replace(tzinfo=TIMEZONE)
             if _end_time.startswith("P"):
                 _duration_hour, _duration_min = re.match(
                     RE_DURATION, _end_time
@@ -50,6 +52,7 @@ def create_schedule():
                 end_time = datetime.fromisoformat(
                     f"{start_time.date().isoformat()}T{_end_time}"
                 )
+            end_time = end_time.replace(tzinfo=TIMEZONE)
             topics = session.get("topics", [])
             reading = session.get("reading")
             _session = {
@@ -84,7 +87,7 @@ def get_all_notebooks():
 
 
 def main():
-    now = datetime.now()
+    now = datetime.now(TIMEZONE)
     dir_template = os.path.join(DIR_HERE, DIR_TEMPLATES)
     env = jinja2.Environment(loader=jinja2.FileSystemLoader(dir_template))
 
