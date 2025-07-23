@@ -37,5 +37,12 @@
 
       <h2>Exam</h2>
       <p>{{ data["exam"] }}</p>
+
+      <h2>Other Links</h2>
+      <ul>
+        <li>Lisam: <a href="{{ course_info['lisam'] }}">{{- course_info['lisam'] -}}</a></li>
+        <li>TimeEdit: <a href="{{ course_info['timeedit'] }}">{{- course_info['timeedit'] -}}</a></li>
+        <li>Studieinfo: <a href="https://studieinfo.liu.se/en/kurs/{{- course_info['code'] -}}/{{- course_info['term'] | replace(' ', '-') -}}">https://studieinfo.liu.se/en/kurs/{{- course_info['code'] -}}/{{- course_info['term'] | replace(' ', '-') -}}</a></li>
+      </ul>
 		</section>
 {% endblock %}
