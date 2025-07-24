@@ -26,6 +26,6 @@ instructors:
   tutorials: "Jianan Bai"
   labs: "Jianan Bai"
 literature:
-  - "S. Kay, <i>Statistical Signal Processing: Estimation Theory (Volume I)</i>, Prentice-Hall"
-  - "S. Key, <i>Statistical Signal Processing: Detection Theory (Volume II)</i>, Prentice-Hall"
+  - "S. Kay, <i>Fundamentals of Statistical Signal Processing: Estimation Theory (Volume I)</i>, Prentice-Hall"
+  - "S. Kay, <i>Fundamentals of Statistical Signal Processing: Detection Theory (Volume II)</i>, Prentice-Hall"
 exam: "There will be a written exam."
