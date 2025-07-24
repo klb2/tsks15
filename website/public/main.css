@@ -45,7 +45,7 @@ body {
 	font-size: var(--font-size-m);
 	font-family: 'Open Sans', sans-serif;
   text-wrap: balance;
-  max-width: 1400px;
+  max-width: min(1400px, 100%);
   margin: 0px auto;
 }
 
