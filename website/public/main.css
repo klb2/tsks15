@@ -1,15 +1,15 @@
 * {
   scroll-behavior: smooth;
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 :root {
-	--color-bg: #fdfdfd;
-	--color-bg-dark: #f0f0f0;
-	--color-fg: #222;
-	--color-accent: #393;
+  --color-bg: #fdfdfd;
+  --color-bg-dark: #f0f0f0;
+  --color-fg: #222;
+  --color-accent: #393;
   --color-muted: #999;
 
   --font-size-xxl: 2rem;
@@ -38,12 +38,12 @@
 }
 
 body {
-	--webkit-font-smoothing: antialiased;
-	--moz-osx-font-smoothing: grayscale;
-	background-color: var(--color-bg);
-	color: var(--color-fg);
-	font-size: var(--font-size-m);
-	font-family: 'Open Sans', sans-serif;
+  --webkit-font-smoothing: antialiased;
+  --moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  font-size: var(--font-size-m);
+  font-family: 'Open Sans', sans-serif;
   text-wrap: balance;
   max-width: min(1400px, 100%);
   margin: 0px auto;
@@ -76,8 +76,8 @@ nav ul {
 }
 
 nav ul li {
-	padding: var(--spacing1) 0px;
-	font-size: var(--font-size-l);
+  padding: var(--spacing1) 0px;
+  font-size: var(--font-size-l);
 }
 
 footer {
@@ -90,13 +90,17 @@ footer.latest-update {
   color: var(--color-muted);
 }
 
+footer.latest-update a {
+  color: var(--color-muted);
+}
+
 a {
-	color: var(--color-accent);
+  color: var(--color-accent);
   transition: color 0.5s ease-in-out;
 }
 
 a:hover {
-	color: var(--color-fg);
+  color: var(--color-fg);
 }
 
 h1 {
@@ -127,21 +131,21 @@ ul {
 }
 
 table {
-	max-width: 100%;
-	border-collapse: collapse;
-	border-bottom: 1px solid var(--color-accent);
-	border-top: 1px solid var(--color-accent);
+  max-width: 100%;
+  border-collapse: collapse;
+  border-bottom: 1px solid var(--color-accent);
+  border-top: 1px solid var(--color-accent);
 }
 
 td, th {
-	height: var(--spacing5);
-	vertical-align: middle;
-	padding: var(--spacing1) var(--spacing3);
+  height: var(--spacing5);
+  vertical-align: middle;
+  padding: var(--spacing1) var(--spacing3);
 }
 
 thead {
-	text-align: center;
-	border-bottom: 1px solid var(--color-accent);
+  text-align: center;
+  border-bottom: 1px solid var(--color-accent);
 }
 
 tbody tr:nth-child(odd){
@@ -149,7 +153,7 @@ tbody tr:nth-child(odd){
 }
 
 tbody tr:hover {
-	background-color: var(--color-bg-dark);
+  background-color: var(--color-bg-dark);
 }
 
 td ul {

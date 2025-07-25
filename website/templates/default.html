@@ -21,7 +21,9 @@
     {% block main required %}{% endblock %}
 		</main>
 
-		<footer class="latest-update"><p>Latest update: {{ now.strftime("%B&nbsp;%d, %Y (%H:%M)") }}</p></footer>
+    <footer class="latest-update">
+      <p>Latest update: {{ now.strftime("%B&nbsp;%d, %Y (%H:%M)") }}.<br/>
+      ©&nbsp;{{ now.year }} by <a href="https://liu.se/en/employee/karbe64">Karl-Ludwig Besser</a>, licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a></p></footer>
 	</body>
 </html>
 
