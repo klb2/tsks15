@@ -45,6 +45,7 @@ body {
   font-size: var(--font-size-m);
   font-family: 'Open Sans', sans-serif;
   text-wrap: balance;
+  width: 100%;
   max-width: min(1400px, 100%);
   margin: 0px auto;
 }
@@ -97,6 +98,8 @@ footer.latest-update a {
 a {
   color: var(--color-accent);
   transition: color 0.5s ease-in-out;
+  /*word-break: break-word;*/
+  overflow-wrap: anywhere;
 }
 
 a:hover {
@@ -160,7 +163,7 @@ td ul {
   margin: var(--spacing1) 0px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
   .container {
     grid-template-areas: "nav"
       "main"
