@@ -4,7 +4,9 @@
       <h1>General Information</h1>
       <p>Welcome to {{ course_info["code"] }} <i>{{ course_info["name"] }}</i> ({{ course_info["term"] }}).</p>
       <p>{{ data["topics"] }}</p>
+    </section>
 
+    <section>
       <h2>Prerequisites</h2>
       <ul>
         {% for skill in data["prerequisites"] %}
@@ -20,24 +22,32 @@
         {% endfor %}
       </ul>
       {% endif %}
+    </section>
 
+    <section>
       <h2>Instructors</h2>
       <ul>
         <li>Lectures: {{ data["instructors"]["lectures"] }}</li>
         <li>Tutorials: {{ data["instructors"]["tutorials"] }}</li>
         <li>Labs: {{ data["instructors"]["labs"] }}</li>
       </ul>
+    </section>
 
+    <section>
       <h2>Textbooks</h2>
       <ul>
         {% for book in data["literature"] %}
         <li>{{ book }}</li>
         {% endfor %}
       </ul>
+    </section>
 
+    <section>
       <h2>Exam</h2>
       <p>{{ data["exam"] }}</p>
+    </section>
 
+    <section>
       <h2>Other Links</h2>
       <ul>
         <li>Lisam: <a href="{{ course_info['lisam'] }}">{{- course_info['lisam'] -}}</a></li>
