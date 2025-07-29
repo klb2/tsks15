@@ -179,8 +179,8 @@ def _(dc_value, np, num_levels, sliders_priors, stats):
 def _(decisions, np, priors, rvs, x):
     prob_correct_individual = [
         (
-            rv.cdf(x[max(np.where(decisions == idx)[0])])
-            - rv.cdf(x[min(np.where(decisions == idx)[0])])
+            rv.cdf(x[np.max(np.where(decisions == idx)[0], initial=0)])
+            - rv.cdf(x[np.min(np.where(decisions == idx)[0], initial=0)])
         )
         * prior
         for idx, (rv, prior) in enumerate(zip(rvs, priors))
