@@ -5,7 +5,7 @@
       <p>On this page, you can find a list of Marimo notebooks that are
       supplementary material for the course.</p>
 
-      {% for lecture, notebooks in data.items() %}
+      {% for lecture, notebooks in data.items() | sort %}
       <h2>{{ lecture | title }}</h2>
       <ul>
         {% for notebook in notebooks %}
