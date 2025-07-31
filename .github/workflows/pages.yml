@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          if [ -f website/requirements.txt ]; then pip install -r website/requirements.txt; fi
       - name: Building website
         run: |
           python website/generate_website.py
