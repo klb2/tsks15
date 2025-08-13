@@ -63,7 +63,8 @@ def create_schedule():
                 "reading": reading,
                 "type": k,
             }
-            schedule.append(_session)
+            session.update(_session)
+            schedule.append(session)
     return schedule
 
 

@@ -10,6 +10,8 @@
     </p>
 
 		<h2>Lecture & Tutorial Plan</h2>
+    {% set schedule = data %}
+    {% set schedule = schedule | sort(attribute='start_time') %}
     <table>
 			<thead>
 				<tr>
@@ -20,8 +22,6 @@
 				</tr>
 			</thead>
 			<tbody>
-        {% set schedule = data %}
-        {% set schedule = schedule | sort(attribute='start_time') %}
         {% for session in schedule if (session['type'] != "lab") %}
           {% set start_time = session['start_time'] %}
           {% set end_time = session['end_time'] %}
@@ -44,6 +44,31 @@
             </ul>
             {% endif %}
             </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+
+    <h2>Lab Schedule</h2>
+    <table>
+			<thead>
+				<tr>
+					<th>Group</th>
+					<th>Time</th>
+					<th>Lab</th>
+					<th>Comment</th>
+				</tr>
+			</thead>
+			<tbody>
+        {% for session in schedule if (session['type'] == "lab") %}
+          {% set start_time = session['start_time'] %}
+          {% set end_time = session['end_time'] %}
+          <tr class="session{% if now > start_time %} past-event{% endif %}">
+            <td class="session-groups">Group&nbsp;{{ session["groups"] | join(", ") }}</td>
+            <td class="session-time">{{ start_time.strftime("%B&nbsp;%d, %H") }}&ndash;{{ end_time.strftime("%H") }}</td>
+            <td class="session-lab">Lab&nbsp;{{ session["lab"] }}</td>
+            <td class="session-comment">{{ session.get("comment", "") }}</td>
           </tr>
         {% endfor %}
       </tbody>

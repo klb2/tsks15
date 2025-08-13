@@ -19,7 +19,7 @@
     - "Matched filter."
   reading:
     - Kay-II Sections 4.1-4.4, 4.6
-    - Supplementary material
+    #- Supplementary material
 
 - type: lecture
   time: "2025-09-05T13:15/15:00"
@@ -30,7 +30,7 @@
     - Special cases and examples.
   reading:
     - Kay-II Sections 5.1-5.4, 5.6-5.7
-    - Supplementary material
+    #- Supplementary material
 
 - type: lecture
   time: "2025-09-08T13:15/15:00"
@@ -77,14 +77,16 @@
 - type: lab
   time: "2025-09-15T13:15/15:00"
   room: "Asgård, Egypten"
-  topics:
-    - ...
+  lab: 1
+  groups:
+    - A
 
 - type: lab
   time: "2025-09-16T17:15/19:00"
   room: "Egypten, Olympen"
-  topics:
-    - ...
+  lab: 1
+  groups:
+    - B
 
 - type: tutorial
   time: "2025-09-17T08:15/10:00"
@@ -117,14 +119,16 @@
 - type: lab
   time: "2025-09-22T17:15/19:00"
   room: "Egypten, Olympen"
-  topics:
-    - ...
+  lab: 2
+  groups:
+    - A
 
 - type: lab
   time: "2025-09-24T08:15/10:00"
   room: "Asgård, Egypten"
-  topics:
-    - ...
+  lab: 2
+  groups:
+    - B
 
 - type: lecture
   time: "2025-09-26T13:15/15:00"
@@ -150,14 +154,18 @@
 - type: lab
   time: "2025-09-29T15:15/17:00"
   room: "SU24, SU25"
-  topics:
-    - ...
+  comment: "Examination"
+  lab: 1
+  groups:
+    - A
 
 - type: lab
   time: "2025-09-30T17:15/19:00"
   room: "Asgård, Egypten"
-  topics:
-    - ...
+  comment: "Examination"
+  lab: 1
+  groups:
+    - B
 
 - type: tutorial
   time: "2025-10-01T08:15/10:00"
@@ -223,14 +231,18 @@
 - type: lab
   time: "2025-10-15T08:15/PT1H45M"
   room: "Asgård, Egypten"
-  topics:
-    - ...
+  lab: 2
+  groups:
+    - A
+  comment: "Examination"
 
 - type: lab
   time: "2025-10-17T13:15/PT1H45M"
   room: "Asgård, Egypten"
-  topics:
-    - ...
+  lab: 2
+  groups:
+    - B
+  comment: "Examination"
 
 - type: tutorial
   time: "2025-10-20T13:15/PT1H45M"
