@@ -8,7 +8,7 @@ app = marimo.App(width="medium")
 def _(mo):
     mo.md(
         r"""
-    # Example: Tapped Delay Line
+    # Example: FIR Filter (Tapped Delay Line)
 
     _Author:_ Karl-Ludwig Besser (Linköping University, Sweden)
 
@@ -19,7 +19,7 @@ def _(mo):
     ![Illustration of an FIR filter](https://upload.wikimedia.org/wikipedia/commons/9/9b/FIR_Filter.svg)
 
 
-    In this notebook, you can find an estimation of the filter parameters ($b_i$ in the illustration) using the best linear unbiased estimator (BLUE).
+    In this notebook, you can find an estimation of the filter parameters ($b_i$ in the illustration) using the minimum-variance unbiased (MVU) estimator.
     """
     )
     return
