@@ -190,11 +190,11 @@
   time: "2025-10-06T13:15/PT1H45M"
   room: "T19"
   topics:
-    - Bayesian estimation.
-    - MMSE and LMMSE estimators.
-    - Nuisance parameters in the Bayesian and orthodox paradigms.
+    - Detection of signals with unknown parameters.
+    - Generalized likelihood ratio test (GLRT).
+    - GLRT for linear model with Gaussian noise.
   reading:
-    - Kay-I Sections 10.1-10.7, Chapter 11, Sections 12.1-12.3, 12.5
+    - Kay-II Sections 6.1-6.4, 7.1-7.6
 
 - type: tutorial
   time: "2025-10-06T15:15/PT1H45M"
@@ -215,11 +215,10 @@
   time: "2025-10-10T13:15/PT1H45M"
   room: "KY31"
   topics:
-    - Detection of signals with unknown parameters.
-    - Generalized likelihood ratio test (GLRT).
-    - GLRT for linear model with Gaussian noise.
+    - Performance of the GLRT for linear model with Gaussian noise.
+    - GLRT for separable models and for problems with unknown noise statistics.
   reading:
-    - Kay-II Sections 6.1-6.4, 7.1-7.6
+    - Kay-II Sections 7.7-7.8, 8.1-8.3, 9.1-9.4
 
 - type: tutorial
   time: "2025-10-13T13:15/PT1H45M"
