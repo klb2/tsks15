@@ -1,35 +1,49 @@
 import marimo
 
-__generated_with = "0.14.13"
+__generated_with = "0.15.2"
 app = marimo.App(width="medium")
 
 
 @app.cell
 def _(mo):
-    mo.md(r"""# Detection of Vector Signals in Gaussian Noise""")
+    mo.md(
+        r"""
+    # Detection of Vector Signals in Gaussian Noise
+
+    _Author:_ Karl-Ludwig Besser (Linköping University, Sweden)
+
+
+    This notebook provides a simple illustration of detecting a vector signal in Gaussian noise.
+    In particular, we have the following signal model
+
+    \begin{equation*}
+    \begin{cases}
+    \mathcal{H}_0 &: y = a + w\\
+    \mathcal{H}_0 &: y = b + w\\
+    \end{cases}
+    \end{equation*}
+
+    with known vector signals $a$ and $b$, and Gaussian noise $w\sim\mathcal{N}(0, \sigma^2 I)$.
+    """
+    )
     return
 
 
 @app.cell
-def _(slider_sigma):
-    slider_sigma
-    return
-
-
-@app.cell
-def _(slider_a):
-    slider_a
-    return
-
-
-@app.cell
-def _(slider_b):
-    slider_b
-    return
-
-
-@app.cell
-def _(X, Y, a, b, mo, pdf_h0, pdf_h1, plt):
+def _(
+    X,
+    Y,
+    a,
+    b,
+    md_figure,
+    mo,
+    pdf_h0,
+    pdf_h1,
+    plt,
+    slider_a,
+    slider_b,
+    slider_sigma,
+):
     _fig, _axs = plt.subplots(1, 2, squeeze=True)
     _ax1, _ax2 = _axs
     _ax1.set_title("Likelihood under $\\mathcal{H}_0$ with center $a$")
@@ -42,29 +56,32 @@ def _(X, Y, a, b, mo, pdf_h0, pdf_h1, plt):
         _ax.set_xlabel("First component $y[1]$")
         _ax.set_ylabel("Second component $y[2]$")
     _fig.tight_layout()
-    mo.mpl.interactive(_fig)
+
+    mo.hstack(
+        [
+            mo.mpl.interactive(_fig),
+            mo.vstack([mo.md(md_figure), slider_a, slider_b, slider_sigma]),
+        ],
+        widths=[1.75, 1],
+    )
     return
 
 
 @app.cell
-def _(mo, plt, prob_detect, prob_fa):
+def _(md_roc, mo, plt, prob_detect, prob_fa):
     _fig, _ax = plt.subplots()
     _ax.plot(prob_fa, prob_detect)
     _ax.plot(prob_fa, prob_fa, "--", c="gray")
     _ax.set_xlabel("Probability of False Alarm $P_{\\text{FA}}$")
     _ax.set_ylabel("Probability of Detection $P_{\\text{D}}$")
-    mo.mpl.interactive(_fig)
+    _fig.tight_layout()
+
+    mo.hstack([mo.mpl.interactive(_fig), mo.md(md_roc)], widths=[1.75, 1])
     return
 
 
 @app.cell
-def _(slider_prob_h0):
-    slider_prob_h0
-    return
-
-
-@app.cell
-def _(X, Y, a, b, gamma, mo, plt, statistic):
+def _(X, Y, a, b, gamma, md_bayes, mo, plt, slider_prob_h0, statistic):
     _fig, _ax = plt.subplots()
     _plot = _ax.contourf(X, Y, statistic > gamma)
     _fig.colorbar(_plot)
@@ -72,7 +89,12 @@ def _(X, Y, a, b, gamma, mo, plt, statistic):
     _ax.scatter(*b, c="k")
     _ax.set_xlabel("First component $y[1]$")
     _ax.set_ylabel("Second component $y[2]$")
-    mo.mpl.interactive(_fig)
+    _fig.tight_layout()
+
+    mo.hstack(
+        [mo.mpl.interactive(_fig), mo.vstack([mo.md(md_bayes), slider_prob_h0])],
+        widths=[1.75, 1],
+    )
     return
 
 
@@ -155,6 +177,39 @@ def _():
     from scipy import stats
     import matplotlib.pyplot as plt
     return mo, np, plt, stats
+
+
+@app.cell
+def _():
+    md_figure = r"""
+    ## Illustration
+
+    The figure shows the density of $y$ under both hypotheses with their respective mean values ($a$ and $b$).
+
+    The sliders below allow adjusting the components of $a$ and $b$, and the noise variance $\sigma^2$.
+    """
+    return (md_figure,)
+
+
+@app.cell
+def _():
+    md_roc = r"""
+    ## ROC
+
+    This figure shows the receiver operating characteristic (ROC) of the detector that uses the orthodox approach.
+    """
+    return (md_roc,)
+
+
+@app.cell
+def _():
+    md_bayes = r"""
+    ## Bayesian Detection
+
+    This figure shows the decision regions for a detector that uses the Bayesian approach.
+    The prior probability of $\mathcal{H}_0$ can be adjusted through the slider below.
+    """
+    return (md_bayes,)
 
 
 if __name__ == "__main__":
