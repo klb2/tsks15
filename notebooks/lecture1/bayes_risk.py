@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.14.13"
+__generated_with = "0.15.2"
 app = marimo.App(width="medium")
 
 
@@ -30,27 +30,20 @@ def _(mo):
 
 
 @app.cell
-def _(prior_h0, prior_h1, slider_prior):
-    print(f"Prior H0: {prior_h0:.3f}\nPrior H1: {prior_h1:.3f}")
-    slider_prior
-    return
-
-
-@app.cell
-def _(slider_mean_h1):
-    slider_mean_h1
-    return
-
-
-@app.cell
-def _(opt_x_threshold, slider_threshold):
-    print(f"Optimal threshold (in sample domain): {opt_x_threshold:.3f}")
-    slider_threshold
-    return
-
-
-@app.cell
-def _(mo, np, opt_x_threshold, pdf0, pdf1, plt, x, x_threshold):
+def _(
+    md_summary_parameters,
+    mo,
+    np,
+    opt_x_threshold,
+    pdf0,
+    pdf1,
+    plt,
+    slider_mean_h1,
+    slider_prior,
+    slider_threshold,
+    x,
+    x_threshold,
+):
     _fig, _ax_pdf = plt.subplots()
     _ax_pdf.plot(x, pdf0, label="PDF under $\\mathcal{H}_0$", c="b")
     _ax_pdf.plot(x, pdf1, label="PDF under $\\mathcal{H}_1$", c="orange")
@@ -78,26 +71,28 @@ def _(mo, np, opt_x_threshold, pdf0, pdf1, plt, x, x_threshold):
     # )
 
     _ax_pdf.legend()
-    mo.mpl.interactive(_fig)
+    mo.hstack(
+        [
+            mo.mpl.interactive(_fig),
+            mo.vstack(
+                [
+                    slider_prior,
+                    slider_mean_h1,
+                    slider_threshold,
+                    mo.md(md_summary_parameters),
+                ]
+            ),
+        ],
+        widths=[1.75, 1],
+    )
     # plt.show()
     return
 
 
 @app.cell
-def _(errors, mean_h1, mo, opt_x_threshold, prior_h0, x_threshold):
+def _(errors, mo):
     mo.md(
         f"""
-    ## Summary of Parameters
-
-    | Parameter | Value |
-    |:---|---:|
-    | Prior probability of $\\mathcal{{H}}_0$ | $\\Pr(\\mathcal{{H}}_0)={prior_h0:.3f}$|
-    | Prior probability of $\\mathcal{{H}}_1$ | $\\Pr(\\mathcal{{H}}_1)=1-\\Pr(\\mathcal{{H}}_0)={prior_h0:.3f}$|
-    | Mean under $\\mathcal{{H}}_1$ | $A={mean_h1:.3f}$|
-    | Optimal threshold | $x_{{\\textnormal{{opt}}}}={opt_x_threshold:.3f}$|
-    | Selected threshold | $x_{{\\textnormal{{sel}}}}={x_threshold:.3f}$|
-
-
     ## Error Probabilities
 
     With the selected parameters, you obtain the following total error probabilities $P_{{\\textnormal{{err}}}}$ with
@@ -111,6 +106,22 @@ def _(errors, mean_h1, mo, opt_x_threshold, prior_h0, x_threshold):
     """
     )
     return
+
+
+@app.cell
+def _(mean_h1, opt_x_threshold, prior_h0, x_threshold):
+    md_summary_parameters = f"""
+    ## Summary of Parameters
+
+    | Parameter | Value |
+    |:---|---:|
+    | Prior probability of $\\mathcal{{H}}_0$ | $\\Pr(\\mathcal{{H}}_0)={prior_h0:.3f}$|
+    | Prior probability of $\\mathcal{{H}}_1$ | $\\Pr(\\mathcal{{H}}_1)=1-\\Pr(\\mathcal{{H}}_0)={1 - prior_h0:.3f}$|
+    | Mean under $\\mathcal{{H}}_1$ | $A={mean_h1:.3f}$|
+    | Optimal threshold | $x_{{\\textnormal{{opt}}}}={opt_x_threshold:.3f}$|
+    | Selected threshold | $x_{{\\textnormal{{sel}}}}={x_threshold:.3f}$|
+    """
+    return (md_summary_parameters,)
 
 
 @app.cell
