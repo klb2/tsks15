@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.14.13"
+__generated_with = "0.15.2"
 app = marimo.App(width="medium")
 
 
@@ -28,58 +28,19 @@ def _(mo):
 
 
 @app.cell
-def _(slider_num_levels):
-    slider_num_levels
-    return
-
-
-@app.cell
-def _(slider_a):
-    slider_a
-    return
-
-
-@app.cell
-def _(sliders_priors):
-    sliders_priors
-    return
-
-
-@app.cell
-def _(np, priors):
-    if np.any(priors < 0):
-        text_priors = f"""
-        /// danger | Invalid prior probabilities!
-
-        The selected prior probabilities are not a valid probability distribution: {priors}.
-        ///
-        """
-        print(f"Invalid prior probabilities: {priors}")
-        # raise ValueError(f"Invalid prior probabilities: {priors}")
-    else:
-        text_priors = f"""
-        Selected prior probabilities: {priors}.
-        """
-        print(f"Prior probabilities: {priors}")
-    return (text_priors,)
-
-
-@app.cell
-def _(mo, text_priors):
-    mo.md(text_priors)
-    return
-
-
-@app.cell
-def _(np, priors, rvs, x):
-    posteriors = np.array([rv.pdf(x) * prior for (rv, prior) in zip(rvs, priors)])
-    decisions = np.argmax(posteriors, axis=0)
-    idx_decision_boundaries = np.where(np.diff(decisions))[0]
-    return decisions, idx_decision_boundaries
-
-
-@app.cell
-def _(decisions, idx_decision_boundaries, mo, np, plt, rvs, x):
+def _(
+    decisions,
+    idx_decision_boundaries,
+    mo,
+    np,
+    plt,
+    rvs,
+    slider_a,
+    slider_num_levels,
+    sliders_priors,
+    text_priors,
+    x,
+):
     _fig, _axs = plt.subplots(2, 1, squeeze=True, sharex=True)
     _ax_pdf, _ax_decision = _axs
     for _rv in rvs:
@@ -98,7 +59,17 @@ def _(decisions, idx_decision_boundaries, mo, np, plt, rvs, x):
     _ax_decision.step(x, decisions)
     _ax_decision.set_ylabel("Index of Selected Hypothesis")
 
-    mo.mpl.interactive(_fig)
+    _fig.tight_layout()
+
+    mo.hstack(
+        [
+            mo.mpl.interactive(_fig),
+            mo.vstack(
+                [slider_num_levels, slider_a, sliders_priors, mo.md(text_priors)]
+            ),
+        ],
+        widths=[1.75, 1],
+    )
     return
 
 
@@ -188,6 +159,34 @@ def _(decisions, np, priors, rvs, x):
     prob_correct = np.sum(prob_correct_individual)
     prob_error = 1.0 - prob_correct
     return prob_correct, prob_error
+
+
+@app.cell
+def _(np, priors, rvs, x):
+    posteriors = np.array([rv.pdf(x) * prior for (rv, prior) in zip(rvs, priors)])
+    decisions = np.argmax(posteriors, axis=0)
+    idx_decision_boundaries = np.where(np.diff(decisions))[0]
+    return decisions, idx_decision_boundaries
+
+
+@app.cell
+def _(np, priors):
+    if np.any(priors < 0):
+        text_priors = f"""
+        /// danger | Invalid prior probabilities!
+
+        The selected prior probabilities are not a valid probability distribution: {priors}.
+        ///
+        """
+        print(f"Invalid prior probabilities: {priors}")
+        # raise ValueError(f"Invalid prior probabilities: {priors}")
+    else:
+        _priors = ", ".join([f"{k:.2f}" for k in priors])
+        text_priors = f"""
+        Selected prior probabilities: ({_priors})
+        """
+        print(f"Prior probabilities: {priors}")
+    return (text_priors,)
 
 
 if __name__ == "__main__":
