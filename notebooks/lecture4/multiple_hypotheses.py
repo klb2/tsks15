@@ -15,13 +15,13 @@ def _(mo):
 
     This notebooks provides an interactive visualization of multiple hypothesis testing for detection problems.
     It follows the examples given in (S. Kay, Detection Theory, Section 3.8).
-    In particular, we have $N$ hypothesis $\mathcal{H}_{i}$ with the following distributions conditioned on hypotheses $\mathcal{H}_{i}$:
-    $$\mathcal{H}_i: \mathcal{N}\left(A\left(i-\left\lfloor\frac{N}{2}\right\rfloor\right), 1\right)$$
+    In particular, we have $N$ hypotheses $\mathcal{H}_{i}$ with the following distributions conditioned on hypotheses $\mathcal{H}_{i}$:
+    $$\mathcal{H}_i: y \sim \mathcal{N}\left(A\left(i-\left\lfloor\frac{N}{2}\right\rfloor\right), 1\right), \quad i=0, 1, \dots, N-1$$
     with mean value $\mu_i = A\left(i-\left\lfloor\frac{N}{2}\right\rfloor\right)$.
     Each hypothesis has the prior probability $\Pr(\mathcal{H}_i)$.
 
-    According to [Kay, Eq. (3.22)], we decide for hypothesis $k$ with the maximum a posteriori probability $\Pr(\mathcal{H}_k \mid x)$. By [Kay, Eq. (3.23)], this corresponds to $$\hat{i} = \argmax_{i} p(x \mid \mathcal{H}_i) \Pr(\mathcal{H}_i).$$
-    With our Gaussian model, we have $$p(x \mid \mathcal{H}_i) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left[-\frac{1}{2\sigma^2}(x-\mu_i)^2\right].$$
+    According to [Kay, Eq. (3.22)], we decide for hypothesis $i$ with the maximum a posteriori probability $\Pr(\mathcal{H}_i \mid y)$. By [Kay, Eq. (3.23)], this corresponds to $$\hat{i} = \argmax_{i} p(y \mid \mathcal{H}_i) \Pr(\mathcal{H}_i).$$
+    With our Gaussian model, we have $$p(y \mid \mathcal{H}_i) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left[-\frac{1}{2\sigma^2}(y-\mu_i)^2\right].$$
     """
     )
     return
@@ -31,6 +31,7 @@ def _(mo):
 def _(
     decisions,
     idx_decision_boundaries,
+    md_figure,
     mo,
     np,
     plt,
@@ -43,8 +44,8 @@ def _(
 ):
     _fig, _axs = plt.subplots(2, 1, squeeze=True, sharex=True)
     _ax_pdf, _ax_decision = _axs
-    for _rv in rvs:
-        _ax_pdf.plot(x, _rv.pdf(x), label=f"$\\mu_i={_rv.mean():.3f}$")
+    for _idx, _rv in enumerate(rvs):
+        _ax_pdf.plot(x, _rv.pdf(x), label=f"$\\mu_{_idx:d}={_rv.mean():.3f}$")
     _ax_pdf.vlines(
         x[idx_decision_boundaries],
         0,
@@ -54,10 +55,11 @@ def _(
         label="Decision Boundaries",
     )
     _ax_pdf.legend()
-    _ax_pdf.set_ylabel("PDF")
+    _ax_pdf.set_ylabel(r"PDF $p(y\mid \mathcal{H}_i)$")
 
     _ax_decision.step(x, decisions)
     _ax_decision.set_ylabel("Index of Selected Hypothesis")
+    _ax_decision.set_xlabel("Measurement $y$")
 
     _fig.tight_layout()
 
@@ -65,7 +67,13 @@ def _(
         [
             mo.mpl.interactive(_fig),
             mo.vstack(
-                [slider_num_levels, slider_a, sliders_priors, mo.md(text_priors)]
+                [
+                    mo.md(md_figure),
+                    slider_num_levels,
+                    slider_a,
+                    sliders_priors,
+                    mo.md(text_priors),
+                ]
             ),
         ],
         widths=[1.75, 1],
@@ -113,7 +121,7 @@ def _():
 @app.cell
 def _(mo):
     slider_a = mo.ui.slider(0.2, 5, 0.2, 1, label="Mean Value $A$")
-    slider_num_levels = mo.ui.slider(3, 7, 2, 3, label="Number of Hypotheses")
+    slider_num_levels = mo.ui.slider(3, 7, 2, 3, label="Number of Hypotheses $N$")
     return slider_a, slider_num_levels
 
 
@@ -187,6 +195,17 @@ def _(np, priors):
         """
         print(f"Prior probabilities: {priors}")
     return (text_priors,)
+
+
+@app.cell
+def _():
+    md_figure = r"""
+    The top figure shows the PDFs of $y$ under each hypothesis $\mathcal{H}_i$, $i=0, 1, \dots, N-1$.
+    Additionally, the optimal decision thresholds are indicated by the dashed lines. Changing the prior probabilities should change their positions.
+
+    The resulting decision regions are shown in the bottom plot, where the value of the curve corresponds to the output $\hat{i}(y)$ of the detector for a given value $y$.
+    """
+    return (md_figure,)
 
 
 if __name__ == "__main__":
