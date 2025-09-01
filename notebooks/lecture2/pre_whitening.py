@@ -30,18 +30,6 @@ def _(mo):
 
 
 @app.cell
-def _(slider_cov_matrix):
-    slider_cov_matrix
-    return
-
-
-@app.cell
-def _(slider_b):
-    slider_b
-    return
-
-
-@app.cell
 def _(
     X,
     Y,

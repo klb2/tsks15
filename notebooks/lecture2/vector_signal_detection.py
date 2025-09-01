@@ -19,7 +19,7 @@ def _(mo):
     \begin{equation*}
     \begin{cases}
     \mathcal{H}_0 &: y = a + w\\
-    \mathcal{H}_0 &: y = b + w\\
+    \mathcal{H}_1 &: y = b + w\\
     \end{cases}
     \end{equation*}
 
