@@ -154,7 +154,7 @@ def _(np):
 @app.cell
 def _(mo):
     slider_prior = mo.ui.slider(
-        0, 1, 0.05, 0.5, label="Prior probability $\\Pr(\\mathcal{H}_0)$"
+        0, 0.95, 0.05, 0.5, label="Prior probability $\\Pr(\\mathcal{H}_0)$"
     )
     slider_threshold = mo.ui.slider(-5, 5, 0.1, 0.5, label="Decision Threshold")
     slider_mean_h1 = mo.ui.slider(
