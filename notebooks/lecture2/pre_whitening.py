@@ -44,6 +44,7 @@ def _(
     slider_cov_matrix,
 ):
     _fig, _axs = plt.subplots(1, 2, squeeze=True)
+    _fig.set_tight_layout(True)
     _ax1, _ax2 = _axs
     _ax1.axis("equal")
     _ax2.axis("equal")
@@ -57,7 +58,6 @@ def _(
     _ax2.scatter(*b_transform, c="k")
     _ax2.set_xlabel("Transformed first component $y_x'$")
     _ax2.set_ylabel("Transformed second component $y_y'$")
-    _fig.tight_layout()
 
     mo.hstack(
         [
@@ -65,6 +65,40 @@ def _(
             mo.vstack([mo.md(md_figure), slider_b, slider_cov_matrix]),
         ],
         widths=[1.75, 1],
+    )
+    return
+
+
+@app.cell
+def _(b, b_transform, mo, str_cov_mat, str_whitening_mat):
+    mo.md(
+        rf"""
+    ## Summary of Parameters
+
+    In the original space, we have the center $b$ as
+
+    \begin{{equation*}}
+    b = \begin{{pmatrix}} {b[0]:.2f} \\ {b[1]:.2f} \end{{pmatrix}}
+    \end{{equation*}}
+
+    and covariance matrix
+
+    \begin{{equation*}}
+    \Gamma = \begin{{pmatrix}}{str_cov_mat}\end{{pmatrix}}
+    \end{{equation*}}
+
+    The transformation/whitening matrix is given as
+
+    \begin{{equation*}}
+    \Gamma^{{-1 / 2}} = \begin{{pmatrix}}{str_whitening_mat}\end{{pmatrix}}
+    \end{{equation*}}
+
+    which gives the center $b'$ in the transformed space as
+
+    \begin{{equation*}}
+    b' = \Gamma^{{-1 / 2}} b = \begin{{pmatrix}} {b_transform[0]:.2f} \\ {b_transform[1]:.2f} \end{{pmatrix}}
+    \end{{equation*}}
+    """
     )
     return
 
@@ -131,6 +165,7 @@ def _(np, slider_b):
 def _(b, cov_mat, grid, np, stats):
     _eigval, _eigvec = np.linalg.eigh(cov_mat)
     whitening_mat = _eigvec @ (np.identity(2) / np.sqrt(_eigval)) @ _eigvec.T
+    # alternatively, we could do: whitening_mat = np.linalg.inv(scipy.linalg.sqrtm(cov_mat))
 
     b_transform = whitening_mat @ b[:, np.newaxis]
     b_transform = np.ravel(b_transform)
@@ -138,7 +173,7 @@ def _(b, cov_mat, grid, np, stats):
         mean=b_transform, cov=np.identity(2)
     )
     pdf_transform = rv_h1_transform.pdf(grid)
-    return b_transform, pdf_transform
+    return b_transform, pdf_transform, whitening_mat
 
 
 @app.cell
@@ -149,6 +184,27 @@ def _(b, grid, np, slider_cov_matrix, stats):
     rv_h1_orig = stats.multivariate_normal(mean=b, cov=cov_mat)
     pdf_orig = rv_h1_orig.pdf(grid)
     return cov_mat, pdf_orig
+
+
+@app.cell
+def _(cov_mat, np, whitening_mat):
+    str_cov_mat = (
+        r"\\".join(
+            np.array2string(_x, precision=2, separator=" & ") for _x in cov_mat
+        )
+        .replace("[", " ")
+        .replace("]", " ")
+    )
+
+    str_whitening_mat = (
+        r"\\".join(
+            np.array2string(_x, precision=2, separator=" & ")
+            for _x in whitening_mat
+        )
+        .replace("[", " ")
+        .replace("]", " ")
+    )
+    return str_cov_mat, str_whitening_mat
 
 
 if __name__ == "__main__":
