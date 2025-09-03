@@ -163,6 +163,14 @@ td ul {
   margin: var(--spacing1) 0px;
 }
 
+.past-event {
+  opacity: 50%;
+}
+
+.past-event:hover, .past-event:focus {
+  opacity: 100%;
+}
+
 @media screen and (max-width: 1024px) {
   .container {
     grid-template-areas: "nav"

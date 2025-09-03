@@ -25,7 +25,7 @@
         {% for session in schedule if (session['type'] != "lab") %}
           {% set start_time = session['start_time'] %}
           {% set end_time = session['end_time'] %}
-          <tr class="session{% if now > start_time %} past-event{% endif %}">
+          <tr tabindex="-1" class="session{% if now > start_time %} past-event{% endif %}">
             <td class="session-title">{{ session["title"] }}</td>
             <td class="session-time">{{ start_time.strftime("%B&nbsp;%d, %H") }}&ndash;{{ end_time.strftime("%H") }}</td>
             <td class="session-topics">
@@ -64,7 +64,7 @@
         {% for session in schedule if (session['type'] == "lab") %}
           {% set start_time = session['start_time'] %}
           {% set end_time = session['end_time'] %}
-          <tr class="session{% if now > start_time %} past-event{% endif %}">
+          <tr tabindex="-1" class="session{% if now > start_time %} past-event{% endif %}">
             <td class="session-groups">Group&nbsp;{{ session["groups"] | join(", ") }}</td>
             <td class="session-time">{{ start_time.strftime("%B&nbsp;%d, %H") }}&ndash;{{ end_time.strftime("%H") }}</td>
             <td class="session-lab">Lab&nbsp;{{ session["lab"] }}</td>
