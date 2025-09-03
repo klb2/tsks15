@@ -45,17 +45,17 @@ def _(
     slider_sigma,
 ):
     _fig, _axs = plt.subplots(1, 2, squeeze=True)
+    _fig.set_tight_layout(True)
     _ax1, _ax2 = _axs
-    _ax1.set_title("Likelihood under $\\mathcal{H}_0$ with center $a$")
+    for _ax in (_ax1, _ax2):
+        _ax.set_xlabel(r"First component $y[1]$")
+        _ax.set_ylabel(r"Second component $y[2]$")
+    _ax1.set_title(r"Likelihood under $\mathcal{H}_0$ with center $a$")
     _ax1.contourf(X, Y, pdf_h0)
     _ax1.scatter(*a, marker="^", c="r")
-    _ax2.set_title("Likelihood under $\\mathcal{H}_1$ with center $b$")
+    _ax2.set_title(r"Likelihood under $\mathcal{H}_1$ with center $b$")
     _ax2.contourf(X, Y, pdf_h1)
     _ax2.scatter(*b, c="k")
-    for _ax in (_ax1, _ax2):
-        _ax.set_xlabel("First component $y[1]$")
-        _ax.set_ylabel("Second component $y[2]$")
-    _fig.tight_layout()
 
     mo.hstack(
         [
@@ -70,11 +70,11 @@ def _(
 @app.cell
 def _(md_roc, mo, plt, prob_detect, prob_fa):
     _fig, _ax = plt.subplots()
+    _fig.set_tight_layout(True)
     _ax.plot(prob_fa, prob_detect)
     _ax.plot(prob_fa, prob_fa, "--", c="gray")
     _ax.set_xlabel("Probability of False Alarm $P_{\\text{FA}}$")
     _ax.set_ylabel("Probability of Detection $P_{\\text{D}}$")
-    _fig.tight_layout()
 
     mo.hstack([mo.mpl.interactive(_fig), mo.md(md_roc)], widths=[1.75, 1])
     return
@@ -83,13 +83,13 @@ def _(md_roc, mo, plt, prob_detect, prob_fa):
 @app.cell
 def _(X, Y, a, b, gamma, md_bayes, mo, plt, slider_prob_h0, statistic):
     _fig, _ax = plt.subplots()
+    _fig.set_tight_layout(True)
     _plot = _ax.contourf(X, Y, statistic > gamma)
     _fig.colorbar(_plot)
     _ax.scatter(*a, marker="^", c="r")
     _ax.scatter(*b, c="k")
     _ax.set_xlabel("First component $y[1]$")
     _ax.set_ylabel("Second component $y[2]$")
-    _fig.tight_layout()
 
     mo.hstack(
         [mo.mpl.interactive(_fig), mo.vstack([mo.md(md_bayes), slider_prob_h0])],
