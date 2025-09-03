@@ -1,7 +1,7 @@
 {% extends "default.html" %}
 {% block main %}
     <section id="lecture-plan">
-		<h1>Schedule</h1>
+    <h1>Schedule</h1>
 
     <p>
     Below, you can find an overview of all lectures and tutorials with topics
@@ -9,7 +9,7 @@
     An overview of the schedule with rooms can also be found on <a href="{{ course_info["timeedit"] }}">TimeEdit</a>.
     </p>
 
-		<h2>Lecture & Tutorial Plan</h2>
+    <h2 id="lecture-schedule">Lecture & Tutorial Plan</h2>
     {% set schedule = data %}
     {% set schedule = schedule | sort(attribute='start_time') %}
     <table>
@@ -50,7 +50,7 @@
     </table>
 
 
-    <h2>Lab Schedule</h2>
+    <h2 id="lab-schedule">Lab Schedule</h2>
     <table>
 			<thead>
 				<tr>

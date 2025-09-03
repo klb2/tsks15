@@ -5,6 +5,7 @@
       <ul>
         <li>Sign up to lab sessions via <a href="{{ course_info['lisam'] }}">Lisam</a>.</li>
         <li>Each lab has a session to get started with the work and a session for the in-class oral exam.</li>
+        <li>The schedule can be found at the end of the <a href="schedule.html#lab-schedule">Schedule page</a>.</li>
         <li>The teaching assistant is available to help &ndash; please make an appointment by email.</li>
       </ul>
 
@@ -12,7 +13,7 @@
       <h2 id="lab{{- lab['id'] -}}">{{ lab["title"] }}</h2>
       <ul>
         <li>Topic: {{ lab["topic"] }}</li>
-        <li>Material/Instructions: <a href="{{ lab['url'] }}">{{ lab['url'] }}</a></li>
+        <li>Material/Instructions: <a href="{{ course_info['lisam'] }}/CourseDocuments">Lisam</a></li>
         <li>Preparation:
           <ul>
             {% for prep in lab["preparation"] %}
