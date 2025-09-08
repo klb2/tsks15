@@ -5,6 +5,13 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  workflow_dispatch:
+    inputs:
+      manually:
+        type: boolean
+        required: false
+        default: true
+        description: "Workflow started manually"
 
 jobs:
   build:
