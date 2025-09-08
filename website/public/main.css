@@ -102,8 +102,10 @@ a {
   overflow-wrap: anywhere;
 }
 
+@media (any-hover: hover) {
 a:hover {
   color: var(--color-fg);
+}
 }
 
 h1 {
@@ -155,8 +157,10 @@ tbody tr:nth-child(odd){
   background-color: #f8f8f8;
 }
 
+@media (any-hover: hover) {
 tbody tr:hover {
   background-color: var(--color-bg-dark);
+}
 }
 
 td ul {
