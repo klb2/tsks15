@@ -97,7 +97,7 @@ footer.latest-update a {
 
 a {
   color: var(--color-accent);
-  transition: color 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
   /*word-break: break-word;*/
   overflow-wrap: anywhere;
 }
@@ -106,6 +106,17 @@ a {
 a:hover {
   color: var(--color-fg);
 }
+}
+
+nav a.active {
+  color: var(--color-fg);
+  text-decoration: none;
+}
+
+@media (any-hover: hover) {
+  nav a.active:hover {
+    color: var(--color-accent);
+  }
 }
 
 h1 {
