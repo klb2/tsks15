@@ -7,7 +7,7 @@
       supplementary material for the course.</p>
 
       {% for lecture, notebooks in data.items() | sort %}
-      <h2>{{ lecture | title }}</h2>
+      <h2>{{ lecture | replace("-", " ") | title }}</h2>
       <ul>
         {% for notebook in notebooks %}
         {% set url_notebook = 'https://raw.githubusercontent.com/klb2/tsks15/refs/heads/master/notebooks/' ~ lecture ~ '/' ~ notebook %}

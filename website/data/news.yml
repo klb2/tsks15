@@ -1,3 +1,9 @@
 - date: 2025-09-10
   text: >
     I added the old exams to Lisam. You can find them under "Course Documents".
+
+- date: 2025-09-10
+  text: >
+    I added a new notebook about Monte Carlo (MC) simulations. It illustrates
+    the slides on this topic that you can find in Lisam. It is a good idea to
+    review this material before the first lab.
