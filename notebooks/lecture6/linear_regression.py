@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.14.17"
+__generated_with = "0.15.2"
 app = marimo.App(width="medium")
 
 
@@ -13,7 +13,8 @@ def _(mo):
     _Author:_ Karl-Ludwig Besser (Linköping University, Sweden)
 
     We consider the linear model $A+Bn$ with unknown parameters $A$ and $B$.
-    We obtain the noisy measurements $$y[n] = A + Bn + w[n]$$ with AWGN $w\sim\mathcal{N}(0, I)$ and $n=0, 1, \dots, N-1$.
+    For this, we obtain $N$ noisy measurements $$y[n] = A + Bn + w[n]$$ with AWGN $w\sim\mathcal{N}(0, I)$ and $n=0, 1, \dots, N-1$.
+    Based on these noisy measurements, we aim to estimate both parameters $A$ and $B$.
     """
     )
     return
@@ -42,32 +43,32 @@ def _(mo):
 
 
 @app.cell
-def _(slider_a):
-    slider_a
-    return
-
-
-@app.cell
-def _(slider_b):
-    slider_b
-    return
-
-
-@app.cell
-def _(slider_n):
-    slider_n
-    return
-
-
-@app.cell
-def _(md_estimation, mo, n, noise, plt, y, y_est):
+def _(
+    md_estimation,
+    mo,
+    n,
+    noise,
+    plt,
+    slider_a,
+    slider_b,
+    slider_n,
+    y,
+    y_est,
+):
     _fig, _ax = plt.subplots()
+    _fig.set_tight_layout(True)
     _ax.plot(n, y, "o-", label="$y$")
     _ax.plot(n, y_est, "o-", label=r"$\hat{y}$")
     _ax.plot(n, y - noise, "--", c="gray")
     _ax.legend()
 
-    mo.hstack([mo.mpl.interactive(_fig), mo.md(md_estimation)], widths=[2, 1])
+    mo.hstack(
+        [
+            mo.vstack([slider_a, slider_b, slider_n, mo.mpl.interactive(_fig)]),
+            mo.md(md_estimation),
+        ],
+        widths=[2, 1],
+    )
     return
 
 
@@ -100,22 +101,22 @@ def _(np, slider_a, slider_b, slider_n):
 
 
 @app.cell
-def _(a, b, param_est):
-    md_estimation = f"""
+def _(a, b, np, param_est):
+    md_estimation = rf"""
     ## Estimated Parameters
 
-    For estimating the parameter vector $\\theta=\\begin{{pmatrix}}A \\\\B\\end{{pmatrix}}$, we use the least squares fit as
-    $$\\hat{{\\theta}} = (H^T H)^{{-1}} H^T y$$
+    For estimating the parameter vector $\theta=\begin{{pmatrix}}A \\B\end{{pmatrix}}$, we use the least squares fit as
+    $$\hat{{\theta}} = (H^T H)^{{-1}} H^T y$$
 
 
-    | Parameter | Estimation |
-    |----------:|-----------:|
-    | $A={a:.2f}$ | $\\hat{{A}} = {param_est[0]:.2f}$ |
-    | $B={b:.2f}$ | $\\hat{{B}} = {param_est[1]:.2f}$ |
+    | Parameter | Estimation | Error |
+    |----------:|-----------:|------:|
+    | $A={a:.2f}$ | $\hat{{A}} = {param_est[0]:.2f}$ | $`|`\hat{{A}}-A`|` = {np.abs(param_est[0] - a):.3f}$ |
+    | $B={b:.2f}$ | $\hat{{B}} = {param_est[1]:.2f}$ | $`|`\hat{{B}}-B`|` = {np.abs(param_est[1] - b):.3f}$ |
 
 
     The blue line in the plot shows the noisy measurements $y$.
-    The orange line shows the curve with the estimated parameters, i.e., $\\hat{{y}} = \\hat{{A}} + \\hat{{B}} n$.
+    The orange line shows the curve with the estimated parameters, i.e., $\hat{{y}} = \hat{{A}} + \hat{{B}} n$.
     The dashed gray line indicates the true function $A+Bn$.
     """
     return (md_estimation,)
