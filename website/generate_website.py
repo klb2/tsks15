@@ -13,6 +13,7 @@ from constants import (
     DIR_NOTEBOOKS,
     FILE_SCHEDULE,
     FILE_INFO,
+    FILE_NEWS,
     FILE_LABS,
     MAP_SESSION_TYPE,
     TIMEZONE,
@@ -93,6 +94,8 @@ def main():
     env = jinja2.Environment(loader=jinja2.FileSystemLoader(dir_template))
 
     general_info = load_data(FILE_INFO)
+    news = load_data(FILE_NEWS)
+    general_info["news"] = news
     course_info = general_info.pop("general_info")
     schedule = create_schedule()
     lab_info = load_data(FILE_LABS)

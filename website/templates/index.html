@@ -8,6 +8,15 @@
     </section>
 
     <section>
+      <h2>News</h2>
+      <ul>
+        {% for post in data["news"] %}
+        <li><em>{{- post["date"].strftime("%b&nbsp;%d,&nbsp;%Y") -}}:</em> {{ post["text"] -}}</li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <section>
       <h2>Prerequisites</h2>
       <ul>
         {% for skill in data["prerequisites"] %}

@@ -8,6 +8,7 @@ DIR_NOTEBOOKS = os.path.join(os.path.pardir, "notebooks")
 
 FILE_INFO = "info.yml"
 FILE_SCHEDULE = "schedule.yml"
+FILE_NEWS = "news.yml"
 FILE_LABS = "labs.yml"
 
 MAP_SESSION_TYPE = {
