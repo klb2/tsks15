@@ -43,7 +43,7 @@ body {
   background-color: var(--color-bg);
   color: var(--color-fg);
   font-size: var(--font-size-m);
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Noto Sans', sans-serif;
   text-wrap: balance;
   width: 100%;
   max-width: min(1400px, 100%);
