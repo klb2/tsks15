@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.16.1"
+__generated_with = "0.16.5"
 app = marimo.App(width="medium")
 
 
@@ -55,11 +55,17 @@ def _(mo):
     P_{\text{D}} = Q_{\chi^{'2}_1(NA^2)}\left(Q_{\chi^2_1}^{-1}\left(P_{\text{FA}}\right)\right)
     \end{equation*}
 
+    While the above expressions appear complicated, they can easily be evaluated using popular libraries.
+    In scipy, the [$Q$-function (survival function)](https://en.wikipedia.org/wiki/Survival_function) of the non-central chi-square distribution ${Q_{\chi^{'2}_k(\lambda)}}$ can be computed by simply calling the [`scipy.stats.ncx2.sf` function](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ncx2.html).
+
+    ### Comparison with Known $A$
     For comparison, if we know the DC level $A$, we can apply the Neyman-Pearson theorem from the first lectures, which yields a detection probability of
 
     \begin{equation*}
     P_{\text{D}} = Q\left(Q^{-1}\left(P_{\text{FA}}\right) - \sqrt{NA^2}\right)
     \end{equation*}
+
+    where $Q$ denotes the "regular" [$Q$-function](https://en.wikipedia.org/wiki/Q-function), i.e., the survival function of the standard normal distribution.
     """
     )
     return
@@ -69,15 +75,15 @@ def _(mo):
 def _(mo):
     mo.md(
         r"""
-    ## (Semi-)Bayes Approach
+    ## (Semi-)Bayesian Approach
 
     Alternatively, we can use the semi-Bayesian approach where the estimation of the unknown parameter is done through the Bayesian framework while the detection is following the orthodox approach.
-    As the prior distribution of $A$, we assume a normal distribution with zero mean and variance $\lambda^2$, i.e., ${p(A)=\mathcal{N}(0, \lambda^2)}$.
+    As the prior distribution of $A$, we assume a normal distribution with zero mean and variance $\sigma^2$, i.e., ${p(A)=\mathcal{N}(0, \sigma^2)}$.
 
     The resulting detection probability can be evaluated to
 
     \begin{equation*}
-    P_{\text{D}} = Q_{\chi^{2}_1}\left(\frac{Q_{\chi^2_1}^{-1}\left(P_{\text{FA}}\right)}{1 + N \lambda^2}\right)
+    P_{\text{D}} = Q_{\chi^{2}_1}\left(\frac{Q_{\chi^2_1}^{-1}\left(P_{\text{FA}}\right)}{1 + N \sigma^2}\right)
     \end{equation*}
     """
     )
@@ -101,7 +107,7 @@ def _(
     _fig.set_tight_layout(True)
     _axs.plot(prob_fa, prob_detect_unknown, label=r"Unknown $A$")
     _axs.plot(prob_fa, prob_detect_known, label=r"Known $A$")
-    _axs.plot(prob_fa, prob_detect_semi_bayes, label=r"Prior $A$")
+    _axs.plot(prob_fa, prob_detect_semi_bayes, label=r"Semi-Bayesian Approach")
     _axs.plot([0, 1], [0, 1], "--", c="gray")
     _axs.set_xlabel(r"Probability of False Alarm $P_{\text{FA}}$")
     _axs.set_ylabel(r"Probability of Detection $P_{\text{D}}$")
@@ -138,9 +144,9 @@ def _():
     If $|A|$ increases, the performance gets better (as the SNR increases).
     Similarly, if we collect more samples, i.e., increase $N$, the performance also improves.
 
-    For the semi-Bayesian approach, the performance depends on the number of samples $N$ and the variance of the prior distribution $\lambda^2$.
+    For the semi-Bayesian approach, the performance depends on the number of samples $N$ and the variance of the prior distribution $\sigma^2$.
     As expected, the performance improves if $N$ increases.
-    However, if we have a sharper prior distribution, i.e., if $\lambda^2$ is small, the performance decreases.
+    However, if we have a sharper prior distribution, i.e., if $\sigma^2$ is small, the performance decreases.
     The reason behind this is that, while we have better prior information about $A$, it will almost always be close to zero (since the prior distribution has zero mean). This makes the detection problem very difficult as the SNR is very low.
     """
     return (md_roc_orthodox,)
@@ -188,7 +194,7 @@ def _(mo, np):
     slider_num_samples = mo.ui.slider(1, 30, 1, 10, label=r"Number of samples $N$")
     slider_dc_level = mo.ui.slider(-3, 3, 0.1, 1, label=r"DC level $A$")
     slider_var_prior = mo.ui.slider(
-        0.01, 10, 0.1, 1, label=r"Variance $\lambda^2$ of the prior of $A$"
+        0.01, 10, 0.1, 1, label=r"Variance $\sigma^2$ of the prior of $A$"
     )
     return prob_fa, slider_dc_level, slider_num_samples, slider_var_prior
 
