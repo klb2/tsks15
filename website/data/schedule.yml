@@ -193,6 +193,7 @@
     - Detection of signals with unknown parameters.
     - Generalized likelihood ratio test (GLRT).
     - GLRT for linear models with Gaussian noise.
+    - Performance of the GLRT for linear models with Gaussian noise.
   reading:
     - Kay-II Sections 6.1-6.4, 7.1-7.6
 
@@ -215,8 +216,8 @@
   time: "2025-10-10T13:15/PT1H45M"
   room: "KY31"
   topics:
-    - Performance of the GLRT for linear models with Gaussian noise.
     - GLRT for separable models and for problems with unknown noise statistics.
+    - Summary and outlook
   reading:
     - Kay-II Sections 7.7-7.8, 8.1-8.3, 9.1-9.4
 
