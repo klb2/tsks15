@@ -1,6 +1,6 @@
 - type: lecture
-  time: "2025-09-01T13:15/15:00"
-  room: "T27"
+  time: "2026-08-31T13:15/15:00"
+  room: "P22"
   topics:
     - Introduction and overview of the course.
     - Model-based versus data-driven inference.
@@ -11,8 +11,8 @@
     - Kay-II Chapter 1, Sections 3.1-3.7
 
 - type: lecture
-  time: "2025-09-03T08:15/10:00"
-  room: "S37"
+  time: "2026-09-02T08:15/10:00"
+  room: "P18"
   topics:
     - "Detection of deterministic vector signals in white Gaussian noise."
     - "Dealing with colored noise. Pre-whitening."
@@ -22,8 +22,8 @@
     #- Supplementary material
 
 - type: lecture
-  time: "2025-09-05T13:15/15:00"
-  room: "S35"
+  time: "2026-09-04T13:15/15:00"
+  room: "P18"
   topics:
     - Detection of random Gaussian signals in Gaussian noise.
     - Optimal detector and its performance.
@@ -33,8 +33,8 @@
     #- Supplementary material
 
 - type: lecture
-  time: "2025-09-08T13:15/15:00"
-  room: "T23"
+  time: "2026-09-07T13:15/15:00"
+  room: "P30"
   topics:
     - Contrasting the orthodox and Bayesian approach.
     - Detection with M>2 hypotheses.
@@ -44,16 +44,16 @@
     - Kay-II Sections 3.8, 4.5, 4.7
 
 - type: tutorial
-  time: "2025-09-08T15:15/17:00"
-  room: "T23"
+  time: "2026-09-07T15:15/17:00"
+  room: "R19"
   topics:
     - "Walk-through by the instructor: Monte-Carlo simulation + Kay-II problem 3.6"
     - "Problems, from Kay-II: 1.2, 3.4, 3.14, 4.6, 4.8, 4.15, 4.16, 4.19"
     - 'Problems, from the "additional problems" document: #1'
 
 - type: lecture
-  time: "2025-09-10T08:15/10:00"
-  room: "T27"
+  time: "2026-09-09T08:15/10:00"
+  room: "P26"
   topics:
     - Introduction to estimation theory.
     - Orthodox versus Bayesian approach.
@@ -63,8 +63,8 @@
     - Kay-I Chapters 1-2, Sections 3.1-3.5
 
 - type: lecture
-  time: "2025-09-12T13:15/15:00"
-  room: "T27"
+  time: "2026-09-11T13:15/15:00"
+  room: "P26"
   topics:
     - CRB for vector parameters.
     - Slepian-Bang's formula.
@@ -75,22 +75,22 @@
     - Kay-I Sections 3.6-3.9, 3.11
 
 - type: lab
-  time: "2025-09-15T13:15/15:00"
-  room: "Asgård, Egypten"
+  time: "2026-09-14T13:15/15:00"
+  room: "SU11, SU17/18"
   lab: 1
   groups:
     - A
 
 - type: lab
-  time: "2025-09-16T17:15/19:00"
-  room: "Egypten, Olympen"
+  time: "2026-09-15T17:15/19:00"
+  room: "SU10, SU17/18"
   lab: 1
   groups:
     - B
 
 - type: tutorial
-  time: "2025-09-17T08:15/10:00"
-  room: "S7"
+  time: "2026-09-16T08:15/10:00"
+  room: "P18"
   topics:
     - "Walk-through by the instructor: Kay-I problem 1.4"
     - "Problems, from Kay-II: 5.2, 5.3, 5.10, 5.14, 5.18"
@@ -98,16 +98,16 @@
     - 'Problems, from the "additional problems" document: #2'
 
 - type: tutorial
-  time: "2025-09-19T13:15/15:00"
-  room: "S3"
+  time: "2026-09-18T13:15/15:00"
+  room: "P22"
   topics:
     - "Walk-through by the instructor: Kay-I: 3.15, 6.15"
     - "Problems, from Kay-I: 3.1, 3.19, 3.9, 4.11, 6.1, 6.3, 6.16"
     - 'Problems, from the "additional problems" document: #3'
 
 - type: lecture
-  time: "2025-09-22T13:15/15:00"
-  room: "R44"
+  time: "2026-09-21T13:15/15:00"
+  room: "P26"
   topics:
     - "MVU estimator for linear model with Gaussian noise."
     - "BLUE estimator for linear model with arbitrary noise."
@@ -117,22 +117,22 @@
     - Kay-I Chapters 4, 6
 
 - type: lab
-  time: "2025-09-22T15:15/17:00"
-  room: "Egypten, Olympen"
+  time: "2026-09-21T15:15/17:00"
+  room: "SU24, Vippan"
   lab: 2
   groups:
     - A
 
 - type: lab
-  time: "2025-09-24T08:15/10:00"
-  room: "Asgård, Egypten"
+  time: "2026-09-23T08:15/10:00"
+  room: "SU24, Vippan"
   lab: 2
   groups:
     - B
 
 - type: lecture
-  time: "2025-09-26T13:15/15:00"
-  room: "S3"
+  time: "2026-09-25T13:15/15:00"
+  room: "P22"
   topics:
     - Maximum-likelihood estimation.
     - Asymptotic efficiency.
@@ -141,8 +141,8 @@
     - Kay-I Sections 7.1-7.8, 7.10
 
 - type: lecture
-  time: "2025-09-29T13:15/15:00"
-  room: "T11"
+  time: "2026-09-28T13:15/15:00"
+  room: "R26"
   topics:
     - Linear and non-linear least-squares.
     - Separable models.
@@ -152,24 +152,24 @@
     - Kay-I Sections 8.1-8.4, 8.9, 9.1-9.5
 
 - type: lab
-  time: "2025-09-29T15:15/17:00"
-  room: "SU24, SU25"
+  time: "2026-09-28T15:15/17:00"
+  room: "SU24, Vippan"
   comment: "Examination"
   lab: 1
   groups:
     - A
 
 - type: lab
-  time: "2025-09-30T17:15/19:00"
-  room: "Asgård, Egypten"
+  time: "2026-09-29T17:15/19:00"
+  room: "SU24, Vippan"
   comment: "Examination"
   lab: 1
   groups:
     - B
 
 - type: tutorial
-  time: "2025-10-01T08:15/10:00"
-  room: "T27"
+  time: "2026-09-30T08:15/10:00"
+  room: "P34"
   topics:
      - 'Walk-through by the instructor: periodogram example + Kay-I problem 7.3'
      - 'Problems, from Kay-I: 7.1, 7.10, 7.20'
@@ -177,8 +177,8 @@
      - 'Backup time.'
 
 - type: lecture
-  time: "2025-10-03T13:15/PT1H45M"
-  room: "T27"
+  time: "2026-10-02T13:15/PT1H45M"
+  room: "P34"
   topics:
     - Bayesian estimation.
     - MMSE and LMMSE estimators.
@@ -187,8 +187,8 @@
     - Kay-I Sections 10.1-10.7, Chapter 11, Sections 12.1-12.3, 12.5
 
 - type: lecture
-  time: "2025-10-06T13:15/PT1H45M"
-  room: "T19"
+  time: "2026-10-05T13:15/PT1H45M"
+  room: "P34"
   topics:
     - Detection of signals with unknown parameters.
     - Generalized likelihood ratio test (GLRT).
@@ -198,23 +198,23 @@
     - Kay-II Sections 6.1-6.4, 7.1-7.6
 
 - type: tutorial
-  time: "2025-10-06T15:15/PT1H45M"
-  room: "T27"
+  time: "2026-10-05T15:15/PT1H45M"
+  room: "P34"
   topics:
     - 'Walk-through by the instructor: Kay-I problem 7.9'
     - 'Problems, from Kay-I: 8.1, 8.3, 8.5, 8.7, 9.1, 9.7'
 
 - type: tutorial
-  time: "2025-10-08T08:15/PT1H45M"
-  room: "T27"
+  time: "2026-10-07T08:15/PT1H45M"
+  room: "P26"
   topics:
     - 'Walk-through by the instructor: Kay-I problem 11.3'
     - 'Problems, from Kay-I: 10.6, 10.9, 10.11, 11.9, 11.16, 12.2'
     - 'Problems, from the "additional problems" document: #5'
 
 - type: lecture
-  time: "2025-10-10T13:15/PT1H45M"
-  room: "KY31"
+  time: "2026-10-09T13:15/PT1H45M"
+  room: "P22"
   topics:
     - GLRT for separable models and for problems with unknown noise statistics.
     - Summary and outlook
@@ -222,31 +222,31 @@
     - Kay-II Sections 7.7-7.8, 8.1-8.3, 9.1-9.4
 
 - type: tutorial
-  time: "2025-10-13T13:15/PT1H45M"
-  room: "S25"
+  time: "2026-10-12T13:15/PT1H45M"
+  room: "R23"
   topics:
     - 'Walk-through by the instructor: 7.2'
     - 'Problems, from Kay-II: 6.6, 6.10, 7.1, 7.3, 7.9, 7.7, 7.10'
 
 - type: lab
-  time: "2025-10-15T08:15/PT1H45M"
-  room: "Asgård, Egypten"
+  time: "2026-10-14T08:15/PT1H45M"
+  room: "SU11, SU17/18"
   lab: 2
   groups:
     - A
   comment: "Examination"
 
 - type: lab
-  time: "2025-10-17T13:15/PT1H45M"
-  room: "Asgård, Egypten"
+  time: "2026-10-16T13:15/PT1H45M"
+  room: "SU24, Vippan"
   lab: 2
   groups:
     - B
   comment: "Examination"
 
 - type: tutorial
-  time: "2025-10-20T13:15/PT1H45M"
-  room: "T23"
+  time: "2026-10-19T13:15/PT1H45M"
+  room: "R27"
   topics:
     - 'Walk-through by the instructor: 8.7'
     - 'Problems, from Kay-II: 7.23, 7.25, 8.8, 9.4, 9.11, 9.13'

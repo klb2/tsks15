@@ -1,11 +1,11 @@
 general_info:
   name: "Detection and Estimation of Signals"
   code: "TSKS15"
-  term: "HT 2025"
+  term: "HT 2026"
   lisam: "https://liuonline.sharepoint.com/sites/Lisam_TSKS15_2025HT_T4/"
-  timeedit: "https://cloud.timeedit.net/liu/web/schema/ri167XQQ581Z50Qm17015gZ6y3Y7300Q6Y45Y4.html"
+  timeedit: "https://cloud.timeedit.net/liu/web/schema/ri167XQQ682Z50Qm77075gZ6y4Y7804Q6Y45Y1.html"
 topics: >
-  This course treats statistical signal processing, specifically parameter
+  This course treats statistical signal processing, specifically parameter
   estimation and detection of signals. The purpose of the course is to provide
   a solid foundation in algorithms, models, methods and theory for the
   extraction of information from noisy signals. Applications are found for
@@ -23,9 +23,9 @@ review:
   - Conditional and marginal probability, Bayes rule
 instructors:
   lectures: "Karl-Ludwig Besser"
-  tutorials: "Jianan Bai"
-  labs: "Jianan Bai"
+  tutorials: "Siying Chen"
+  labs: "Siying Chen"
 literature:
   - "S. Kay, <i>Fundamentals of Statistical Signal Processing: Estimation Theory (Volume I)</i>, Prentice-Hall"
   - "S. Kay, <i>Fundamentals of Statistical Signal Processing: Detection Theory (Volume II)</i>, Prentice-Hall"
-exam: "There will be a written exam on October 29, 2025 (8-12)."
+exam: "There will be a written exam on October 28, 2026 (14-18)."
