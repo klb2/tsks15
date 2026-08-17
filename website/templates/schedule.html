@@ -32,7 +32,20 @@
             <td class="session-topics">
             <ul>
               {% for topic in session['topics'] %}
-              <li>{{- topic -}}</li>
+              <li>
+                {%- if topic is mapping -%}
+                {%- for key, value in topic.items() -%}
+                {{- key -}}
+                <ul>
+                  {%- for subtopic in value -%}
+                  <li>{{- subtopic -}}</li>
+                  {%- endfor -%}
+                </ul>
+                {%- endfor -%}
+                {%- else -%}
+                  {{- topic -}}
+                {%- endif -%}
+              </li>
               {% endfor %}
             </ul>
             </td>
