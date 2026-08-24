@@ -1,0 +1,80 @@
+{% set active_page = "tutor" %}
+{% extends "default.html" %}
+{% block main %}
+    <section>
+      <h1>Tutor Prompts</h1>
+
+      <p>The following is a suggestion for a prompt that creates a tutor for studying the contents of TSKS15.</p>
+      <p>The tutor uses the <a href="https://en.wikipedia.org/wiki/Socratic_method">Socratic method</a>, so it will ask questions to guide you to the solution and a better understanding of the topic.
+      Try using it this way and do not ask for answers immediately.
+      Some suggestions when responding to the tutor:
+      <ul>
+        <li>Take time to think before responding</li>
+        <li>Explain your reasoning, not just your answer</li>
+        <li>If you're unsure, say what you're thinking anyway</li>
+      </ul>
+      </p>
+      <p>The following are some example prompts for using the tutor.
+        <table>
+          <thead>
+            <tr>
+              <th>Goal</th>
+              <th>Example Prompt</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Concept help</td>
+              <td><code>I'm confused about when the Cramér-Rao bound is attained. Can you help me reason through this?</code></td>
+            </tr>
+            <tr>
+              <td>Exercise help</td>
+              <td><code>I'm deriving the LMMSE estimator. I've set up the orthogonality principle but I'm stuck on the next step.</code></td>
+            </tr>
+            <tr>
+              <td>Verify work</td>
+              <td><code>Here's my derivation: [paste work]. Can you check if my reasoning is correct?</code></td>
+            </tr>
+            <tr>
+              <td>Exam prep</td>
+              <td><code>Can you quiz me on Bayesian detection? Ask one question at a time.</code></td>
+            </tr>
+            <tr>
+              <td>Direct solution</td>
+              <td><code>I've struggled for 20+ minutes. Please give me the complete solution. No questions.</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </p>
+
+      <h2>Short Version</h2>
+      <p>
+        This shorter version is available as a <a href="https://m365.cloud.microsoft/chat/?titleId=T_485c5981-4551-7d90-63e7-f6180e44bc74">Copilot Agent through your LiU account</a>.
+        However, you can also use it with any other LLM you like.
+      </p>
+      <div class="code-block">
+        <button class="copy-button" onclick="copyCode(this)">Copy</button>
+        <pre><code>{{- data["prompt_short"] -}}</code></pre>
+      </div>
+
+
+      <h2>Longer Version</h2>
+      <p>
+        The following is a longer version of the tutor prompt, which might work better with some more modern and advanced LLMs that have a long context window.
+        However, it is not as token-efficient as the short version and probably has only minimal performance gains.
+      </p>
+      <div class="code-block">
+        <button class="copy-button" onclick="copyCode(this)">Copy</button>
+        <pre><code>{{- data["prompt_long"] -}}</code></pre>
+      </div>
+		</section>
+
+    <script>
+      function copyCode(button) {
+        const code = button.parentElement.querySelector("code").textContent;
+        navigator.clipboard.writeText(code);
+        button.textContent = "Copied!";
+        setTimeout(() => button.textContent = "Copy", 1500);
+      }
+    </script>
+{% endblock %}

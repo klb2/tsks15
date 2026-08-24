@@ -10,6 +10,8 @@ FILE_INFO = "info.yml"
 FILE_SCHEDULE = "schedule.yml"
 FILE_NEWS = "news.yml"
 FILE_LABS = "labs.yml"
+FILE_TUTOR_PROMPT = "tutor-prompt.md"
+FILE_TUTOR_PROMPT_SHORT = "tutor-prompt-short.md"
 
 MAP_SESSION_TYPE = {
     "lecture": "Lecture",

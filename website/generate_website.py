@@ -15,6 +15,8 @@ from constants import (
     FILE_INFO,
     FILE_NEWS,
     FILE_LABS,
+    FILE_TUTOR_PROMPT,
+    FILE_TUTOR_PROMPT_SHORT,
     MAP_SESSION_TYPE,
     TIMEZONE,
 )
@@ -24,9 +26,15 @@ RE_DURATION = r"PT(?:([0-9]{1,2})H)?(?:([0-9]{1,2})M)?"
 
 
 def load_data(data_file):
+    extension = os.path.splitext(data_file)[1]
     file_info = os.path.join(DIR_HERE, DIR_DATA, data_file)
-    with open(file_info, "r") as yml_file:
-        data = yaml.safe_load(yml_file)
+    with open(file_info, "r") as f_data_file:
+        if extension in [".yaml", ".yml"]:
+            data = yaml.safe_load(f_data_file)
+        elif extension in [".md", ".txt"]:
+            data = f_data_file.read()
+        else:
+            raise ValueError(f"Cannot load file of type '{extension}'.")
     return data
 
 
@@ -99,6 +107,12 @@ def main():
     course_info = general_info.pop("general_info")
     schedule = create_schedule()
     lab_info = load_data(FILE_LABS)
+    _tutor_prompt_long = load_data(FILE_TUTOR_PROMPT)
+    _tutor_prompt_short = load_data(FILE_TUTOR_PROMPT_SHORT)
+    tutor_info = {
+        "prompt_long": _tutor_prompt_long,
+        "prompt_short": _tutor_prompt_short,
+    }
 
     notebook_info = get_all_notebooks()
 
@@ -107,6 +121,7 @@ def main():
         "schedule": ("schedule.html", "Schedule", schedule),
         "labs": ("labs.html", "Labs", lab_info),
         "notebooks": ("notebooks.html", "Notebooks", notebook_info),
+        "tutor": ("tutor.html", "Tutor Prompts", tutor_info),
     }
 
     for page, info in pages.items():
