@@ -63,6 +63,7 @@ body {
 main {
   grid-area: main;
   padding: 0px var(--spacing2);
+  overflow: auto;
 }
 
 nav {
