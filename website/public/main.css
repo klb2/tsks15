@@ -205,3 +205,44 @@ td ul {
     float: left;
   }
 }
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+code {
+  font-family: ui-monospace, "Noto Sans Mono", monospace;
+}
+
+.code-block {
+  background: var(--color-bg-dark);
+  border-radius: var(--spacing2);
+  padding: var(--spacing3);
+  position: relative;
+}
+
+.code-block pre {
+  overflow: auto;
+  white-space: pre;
+  max-height: 30rem;
+}
+
+.copy-button {
+  position: absolute;
+  top: var(--spacing2);
+  right: var(--spacing2);
+  background: var(--color-bg);
+  border: 1px solid var(--color-accent);
+  padding: var(--spacing1) var(--spacing2);
+  border-radius: var(--spacing2);
+  font-size: var(--font-size-xs);
+  cursor: pointer;
+}
+
+.copy-button:hover {
+  background: var(--color-bg-dark);
+  color: var(--color-accent);
+}
