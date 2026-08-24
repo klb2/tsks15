@@ -55,7 +55,7 @@ body {
   display: grid;
   grid-template-areas: "nav main"
         "nav footer";
-  grid-template-columns: max-content auto;
+  grid-template-columns: max-content minmax(0, 1fr);
   grid-column-gap: var(--spacing3);
   grid-row-gap: var(--spacing2);
 }
@@ -192,7 +192,7 @@ td ul {
     grid-template-areas: "nav"
       "main"
       "footer";
-    grid-template-columns: auto;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   nav {
