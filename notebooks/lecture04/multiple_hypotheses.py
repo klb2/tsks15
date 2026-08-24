@@ -1,13 +1,12 @@
 import marimo
 
-__generated_with = "0.15.2"
+__generated_with = "0.24.0"
 app = marimo.App(width="medium")
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     # Multiple Hypothesis Testing
 
     _Author:_ Karl-Ludwig Besser (Linköping University, Sweden)
@@ -16,14 +15,13 @@ def _(mo):
     This notebooks provides an interactive visualization of multiple hypothesis testing for detection problems.
     It follows the examples given in (S. Kay, Detection Theory, Section 3.8).
     In particular, we have $N$ hypotheses $\mathcal{H}_{i}$ with the following distributions conditioned on hypotheses $\mathcal{H}_{i}$:
-    $$\mathcal{H}_i: y \sim \mathcal{N}\left(A\left(i-\left\lfloor\frac{N}{2}\right\rfloor\right), 1\right), \quad i=0, 1, \dots, N-1$$
+    \[\mathcal{H}_i: y \sim \mathcal{N}\left(A\left(i-\left\lfloor\frac{N}{2}\right\rfloor\right), 1\right), \quad i=0, 1, \dots, N-1\]
     with mean value $\mu_i = A\left(i-\left\lfloor\frac{N}{2}\right\rfloor\right)$.
     Each hypothesis has the prior probability $\Pr(\mathcal{H}_i)$.
 
-    According to [Kay, Eq. (3.22)], we decide for hypothesis $i$ with the maximum a posteriori probability $\Pr(\mathcal{H}_i \mid y)$. By [Kay, Eq. (3.23)], this corresponds to $$\hat{i} = \argmax_{i} p(y \mid \mathcal{H}_i) \Pr(\mathcal{H}_i).$$
-    With our Gaussian model, we have $$p(y \mid \mathcal{H}_i) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left[-\frac{1}{2\sigma^2}(y-\mu_i)^2\right].$$
-    """
-    )
+    According to [Kay, Eq. (3.22)], we decide for hypothesis $i$ with the maximum a posteriori probability $\Pr(\mathcal{H}_i \mid y)$. By [Kay, Eq. (3.23)], this corresponds to \[\hat{i} = \argmax_{i} p(y \mid \mathcal{H}_i) \Pr(\mathcal{H}_i).\]
+    With our Gaussian model, we have \[p(y \mid \mathcal{H}_i) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left[-\frac{1}{2\sigma^2}(y-\mu_i)^2\right].\]
+    """)
     return
 
 
@@ -83,11 +81,10 @@ def _(
 
 @app.cell
 def _(dc_value, mo, num_levels, priors, prob_correct, prob_error):
-    mo.md(
-        f"""
+    mo.md(f"""
     ## Error Probability
 
-    The probability of making an error $P_{{\\textnormal{{E}}}}$, i.e., deciding for the wrong hypothesis, can be calculated through $$P_{{\\textnormal{{E}}}} = 1- P_{{\\textnormal{{C}}}},$$ where $P_{{\\textnormal{{C}}}}$ is the probability of making the correct decision.
+    The probability of making an error $P_{{\\textnormal{{E}}}}$, i.e., deciding for the wrong hypothesis, can be calculated through \[P_{{\\textnormal{{E}}}} = 1- P_{{\\textnormal{{C}}}},\] where $P_{{\\textnormal{{C}}}}$ is the probability of making the correct decision.
 
 
     ### Summary of Parameters
@@ -104,8 +101,7 @@ def _(dc_value, mo, num_levels, priors, prob_correct, prob_error):
     |:---|---:|
     | Correct Decision | $P_{{\\textnormal{{C}}}} = {prob_correct:.3f}$ |
     | Error Probability | $P_{{\\textnormal{{E}}}} = {prob_error:.3f}$ |
-    """
-    )
+    """)
     return
 
 
@@ -115,13 +111,16 @@ def _():
     import numpy as np
     from scipy import stats
     import matplotlib.pyplot as plt
+
     return mo, np, plt, stats
 
 
 @app.cell
 def _(mo):
     slider_a = mo.ui.slider(0.2, 5, 0.2, 1, label="Mean Value $A$")
-    slider_num_levels = mo.ui.slider(3, 7, 2, 3, label="Number of Hypotheses $N$")
+    slider_num_levels = mo.ui.slider(
+        3, 7, 2, 3, label="Number of Hypotheses $N$"
+    )
     return slider_a, slider_num_levels
 
 
@@ -171,7 +170,9 @@ def _(decisions, np, priors, rvs, x):
 
 @app.cell
 def _(np, priors, rvs, x):
-    posteriors = np.array([rv.pdf(x) * prior for (rv, prior) in zip(rvs, priors)])
+    posteriors = np.array(
+        [rv.pdf(x) * prior for (rv, prior) in zip(rvs, priors)]
+    )
     decisions = np.argmax(posteriors, axis=0)
     idx_decision_boundaries = np.where(np.diff(decisions))[0]
     return decisions, idx_decision_boundaries

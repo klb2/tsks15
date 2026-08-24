@@ -1,22 +1,20 @@
 import marimo
 
-__generated_with = "0.15.2"
+__generated_with = "0.24.0"
 app = marimo.App(width="medium")
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     # Linear Regression
 
     _Author:_ Karl-Ludwig Besser (Linköping University, Sweden)
 
     We consider the linear model $A+Bn$ with unknown parameters $A$ and $B$.
-    For this, we obtain $N$ noisy measurements $$y[n] = A + Bn + w[n]$$ with AWGN $w\sim\mathcal{N}(0, I)$ and $n=0, 1, \dots, N-1$.
+    For this, we obtain $N$ noisy measurements \[y[n] = A + Bn + w[n]\] with AWGN $w\sim\mathcal{N}(0, I)$ and $n=0, 1, \dots, N-1$.
     Based on these noisy measurements, we aim to estimate both parameters $A$ and $B$.
-    """
-    )
+    """)
     return
 
 
@@ -36,9 +34,9 @@ def _(H, np, y):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""Using the interactive sliders below, you can vary the values of the underlying parameters $A$, $B$, and $N$."""
-    )
+    mo.md(r"""
+    Using the interactive sliders below, you can vary the values of the underlying parameters $A$, $B$, and $N$.
+    """)
     return
 
 
@@ -77,6 +75,7 @@ def _():
     import marimo as mo
     import numpy as np
     import matplotlib.pyplot as plt
+
     return mo, np, plt
 
 
@@ -106,7 +105,7 @@ def _(a, b, np, param_est):
     ## Estimated Parameters
 
     For estimating the parameter vector $\theta=\begin{{pmatrix}}A \\B\end{{pmatrix}}$, we use the least squares fit as
-    $$\hat{{\theta}} = (H^T H)^{{-1}} H^T y$$
+    \[\hat{{\theta}} = (H^T H)^{{-1}} H^T y\]
 
 
     | Parameter | Estimation | Error |

@@ -1,13 +1,12 @@
 import marimo
 
-__generated_with = "0.15.0"
+__generated_with = "0.24.0"
 app = marimo.App(width="medium")
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     # Example: Angle of Arrival Estimation
 
     _Author:_ Karl-Ludwig Besser (Linköping University, Sweden)
@@ -15,17 +14,15 @@ def _(mo):
 
     This notebook illustrates the example of estimating the angle of arrival $\psi$. In particular, we have a uniform linear array of $N$ sensors spaced at half-wavelength distance.
 
-    The received signal at sensor $n$ is given as $$y[n] = A \cos\left(\pi n \sin\psi + \phi\right) + w[n]$$ where $w[n]$ is white Gaussian noise.
+    The received signal at sensor $n$ is given as \[y[n] = A \cos\left(\pi n \sin\psi + \phi\right) + w[n]\] where $w[n]$ is white Gaussian noise.
     The three parameters $(A, \phi, \psi)$ are unknown, however, only $\psi$ is of interest.
-    """
-    )
+    """)
     return
 
 
 @app.cell
 def _(attenuation, mo, phi):
-    mo.md(
-        rf"""
+    mo.md(rf"""
     ## Parameters
 
     The attenuation $A$ and the phase offset $\phi$ are drawn randomly in this notebook.
@@ -35,8 +32,7 @@ def _(attenuation, mo, phi):
     A &= {attenuation:.3f}\\
     \phi &= {phi:.3f}
     \end{{align*}}
-    """
-    )
+    """)
     return
 
 
@@ -143,16 +139,14 @@ def _(
 
 @app.cell
 def _(mo):
-    mo.md(
-        rf"""
+    mo.md(rf"""
     ## Estimation
 
     We can estimate the angle of arrival $\psi$ using two different approaches:
 
-    - By jointly estimating the vector $\begin{{pmatrix}}\psi & \phi\end{{pmatrix}}^T$ as a solution to $$\begin{{pmatrix}}\hat{{\psi}} \\ \hat{{\phi}}\end{{pmatrix}} = \argmax_{{\psi, \phi}} \frac{{\left(\sum_{{n=0}}^{{N-1}} y[n] \cos\left(\pi n \sin\psi + \phi\right)\right)^2}}{{\sum_{{n=0}}^{{N-1}} \cos^2\left(\pi n \sin\psi + \phi\right)}}$$
-    - By directly optimizing it through the reduced version $$\hat{{\psi}}_{{\text{{red}}}} = \argmax_{{\psi}} y^T H (H^T H)^{{-1}} H^T y$$
-    """
-    )
+    - By jointly estimating the vector $\begin{{pmatrix}}\psi & \phi\end{{pmatrix}}^T$ as a solution to \[\begin{{pmatrix}}\hat{{\psi}} \\ \hat{{\phi}}\end{{pmatrix}} = \argmax_{{\psi, \phi}} \frac{{\left(\sum_{{n=0}}^{{N-1}} y[n] \cos\left(\pi n \sin\psi + \phi\right)\right)^2}}{{\sum_{{n=0}}^{{N-1}} \cos^2\left(\pi n \sin\psi + \phi\right)}}\]
+    - By directly optimizing it through the reduced version \[\hat{{\psi}}_{{\text{{red}}}} = \argmax_{{\psi}} y^T H (H^T H)^{{-1}} H^T y\]
+    """)
     return
 
 
@@ -196,6 +190,7 @@ def _(linalg, np, num_sensors, rec_signal):
             ]
         ).T
         return np.sum(-y.T @ h @ linalg.pinv(h.T @ h) @ h.T @ y)
+
     return (opt_func_psi_reduce,)
 
 
@@ -216,6 +211,7 @@ def _():
     import numpy as np
     from scipy import linalg, optimize
     import matplotlib.pyplot as plt
+
     return linalg, mo, np, optimize, plt
 
 
@@ -318,6 +314,7 @@ def _(np, num_sensors, rec_signal):
         return (
             -_num / _den
         )  # minus sign because scipy provides a minimization routine
+
     return (opt_func_psi_phi,)
 
 

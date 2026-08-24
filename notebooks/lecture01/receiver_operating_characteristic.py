@@ -1,13 +1,12 @@
 import marimo
 
-__generated_with = "0.15.1"
+__generated_with = "0.24.0"
 app = marimo.App(width="medium")
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     # Receiver Operating Characteristic (ROC)
 
     _Author:_ Karl-Ludwig Besser (Linköping University, Sweden)
@@ -23,8 +22,7 @@ def _(mo):
     H_1: & \mathcal{N}(\mu_1, 1)
     \end{cases}
     \end{equation*}
-    """
-    )
+    """)
     return
 
 
@@ -131,6 +129,7 @@ def _():
     import numpy as np
     from scipy import stats
     import matplotlib.pyplot as plt
+
     return mo, np, plt, stats
 
 

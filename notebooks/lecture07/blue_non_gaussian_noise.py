@@ -1,36 +1,32 @@
 import marimo
 
-__generated_with = "0.14.17"
+__generated_with = "0.24.0"
 app = marimo.App(width="medium")
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     # Best Linear Unbiased Estimator (BLUE) for Non-Gaussian Noise
 
     _Author:_ Karl-Ludwig Besser (Linköping University, Sweden)
 
     This notebook illustrates the use of the best linear unbiased estimator (BLUE) for the estimation of a DC level $A$ in non-Gaussian noise $w$.
-    In particular, the signal model is $$y[n] = A + w[n],$$ where the noise samples $w[n]$ are independent and distributed according to a Laplace distribution with variance $\sigma^2_n$.
+    In particular, the signal model is \[y[n] = A + w[n],\] where the noise samples $w[n]$ are independent and distributed according to a Laplace distribution with variance $\sigma^2_n$.
 
-    The BLUE is given as $$\hat{A}_{\text{BLUE}} = \dfrac{\displaystyle\sum_{n=0}^{N-1} \frac{y[n]}{\sigma^2_n}}{\displaystyle\sum_{n=0}^{N-1} \sigma^2_n}$$ with variance $$\mathrm{var}(\hat{A}_{\text{BLUE}}) = \dfrac{1}{\displaystyle\sum_{n=0}^{N-1} \sigma^2_n}.$$
-    """
-    )
+    The BLUE is given as \[\hat{A}_{\text{BLUE}} = \dfrac{\displaystyle\sum_{n=0}^{N-1} \frac{y[n]}{\sigma^2_n}}{\displaystyle\sum_{n=0}^{N-1} \sigma^2_n}\] with variance \[\mathrm{var}(\hat{A}_{\text{BLUE}}) = \dfrac{1}{\displaystyle\sum_{n=0}^{N-1} \sigma^2_n}.\]
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     ## Sliders
 
     In the following, you can update the value of $A$ and the variance of the fourth sample $\sigma^2_3$ through the sliders.
     The plot will show the signal $y$ together with the true value of $A$ (gray dashed line) and its estimate $\hat{A}_{\text{BLUE}}$ (black dash-dotted line).
-    """
-    )
+    """)
     return
 
 
@@ -77,6 +73,7 @@ def _():
     import numpy as np
     from scipy import stats
     import matplotlib.pyplot as plt
+
     return mo, np, plt, stats
 
 

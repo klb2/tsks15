@@ -1,13 +1,12 @@
 import marimo
 
-__generated_with = "0.16.5"
+__generated_with = "0.24.0"
 app = marimo.App(width="medium")
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     # Detecting an Unknown Signal in Gaussian Noise
 
     _Author:_ Karl-Ludwig Besser (Linköping University, Sweden)
@@ -29,15 +28,13 @@ def _(mo):
     In matrix-vector form, the parameter vector $\theta$ is equal to the scalar $A$, and matrix $H$ is a vector of $N$ ones, i.e., ${H=\mathbf{1}}$.
 
     The detector that we use is based on the generalized likelihood ratio test (GLRT) for linear models with Gaussian noise.
-    """
-    )
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     ## Orthodox Approach
 
     In the orthodox approach, the GLRT can be simplified to
@@ -66,15 +63,13 @@ def _(mo):
     \end{equation*}
 
     where $Q$ denotes the "regular" [$Q$-function](https://en.wikipedia.org/wiki/Q-function), i.e., the survival function of the standard normal distribution.
-    """
-    )
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     ## (Semi-)Bayesian Approach
 
     Alternatively, we can use the semi-Bayesian approach where the estimation of the unknown parameter is done through the Bayesian framework while the detection is following the orthodox approach.
@@ -85,8 +80,7 @@ def _(mo):
     \begin{equation*}
     P_{\text{D}} = Q_{\chi^{2}_1}\left(\frac{Q_{\chi^2_1}^{-1}\left(P_{\text{FA}}\right)}{1 + N \sigma^2}\right)
     \end{equation*}
-    """
-    )
+    """)
     return
 
 
@@ -205,6 +199,7 @@ def _():
     import numpy as np
     from scipy import stats
     import matplotlib.pyplot as plt
+
     return mo, np, plt, stats
 
 

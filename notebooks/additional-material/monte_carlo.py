@@ -1,13 +1,12 @@
 import marimo
 
-__generated_with = "0.15.2"
+__generated_with = "0.24.0"
 app = marimo.App(width="medium")
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     # Monte Carlo Simulations for Detection and Estimation
 
     _Author:_ Karl-Ludwig Besser (Linköping University, Sweden)
@@ -20,20 +19,18 @@ def _(mo):
 
     - More runs (higher $M$) = better accuracy of the results
     - For each MC trial, generate new independent realiziations of all random variables that are part of the averaging
-    """
-    )
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     ## Example: DC Level in AWGN
 
     First, we look at the simple model of an unknown (but constant) DC level $A$ in additive white Gaussian noise (AWGN).
-    The $N$ measurements are therefore given as $$y[n] = A + w[n], \quad n=0, \dots, N-1$$ with independent $w[n]\sim\mathcal{N}(0, 1)$.
-    As the estimator, we use the sample mean $$\hat{A} = \frac{1}{N} \sum_{n=0}^{N-1} y[n].$$
+    The $N$ measurements are therefore given as \[y[n] = A + w[n], \quad n=0, \dots, N-1\] with independent $w[n]\sim\mathcal{N}(0, 1)$.
+    As the estimator, we use the sample mean \[\hat{A} = \frac{1}{N} \sum_{n=0}^{N-1} y[n].\]
 
     The following results demonstrate the performance of this estimator evaluated through MC simulations.
 
@@ -41,8 +38,7 @@ def _(mo):
 
     In this example, we have two different quantities that describe "a number of runs". $N$ is the number of measurement sample we take in each run. In contrast, $M$ is the number of MC runs.
     ///
-    """
-    )
+    """)
     return
 
 
@@ -50,7 +46,9 @@ def _(mo):
 def _(dc_level, np, num_mc_trials, num_measurement):
     measurements = dc_level + np.random.randn(num_mc_trials, num_measurement)
     estimates = np.mean(measurements, axis=1)
-    mean_estimate_varying_M = np.cumsum(estimates) / (np.arange(num_mc_trials) + 1)
+    mean_estimate_varying_M = np.cumsum(estimates) / (
+        np.arange(num_mc_trials) + 1
+    )
     return (mean_estimate_varying_M,)
 
 
@@ -70,11 +68,12 @@ def _(
     _ax_mean = _axs
 
     _ax_mean.plot(np.arange(num_mc_trials) + 1, mean_estimate_varying_M)
-    _ax_mean.hlines(dc_level, 0, num_mc_trials, ls="--", color="gray", alpha=0.5)
+    _ax_mean.hlines(
+        dc_level, 0, num_mc_trials, ls="--", color="gray", alpha=0.5
+    )
     _ax_mean.set_ylim([0.8 * dc_level, 1.2 * dc_level])
     _ax_mean.set_xlabel("Number of MC Trials $M$")
     _ax_mean.set_ylabel(r"Empirical Mean of $\hat{A}$")
-
 
     mo.hstack(
         [mo.vstack([slider_n, mo.mpl.interactive(_fig)]), mo.md(md_emp_mean)],
@@ -93,7 +92,6 @@ def _(md_emp_var, mo, plt, snr_db, var_a_est):
     _axs.legend()
     _axs.set_xlabel("SNR [dB]")
     _axs.set_ylabel(r"Empirical Variance of $\hat{A}$")
-
 
     mo.hstack(
         [mo.mpl.interactive(_fig), mo.md(md_emp_var)],
@@ -124,8 +122,7 @@ def _(dc_level, np):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     ## Reusing Samples between MC Runs
 
     It is important that you generate new and independent realizations of all random variables in each MC run.
@@ -151,8 +148,7 @@ def _(mo):
 
     The following example shows the results and differences between both implementations.
     For this, we fix ${N=10}$ and ${M=100}$.
-    """
-    )
+    """)
     return
 
 
@@ -164,7 +160,6 @@ def _(dc_level, np, snr):
     y_correct = dc_level + np.sqrt(snr) * np.random.randn(_N, _M, len(snr))
     A_est_correct = np.mean(y_correct, axis=0)
     var_a_est_correct = np.var(A_est_correct, axis=0)
-
 
     var_wrong = []
     noise = np.random.randn(_N, _M)
@@ -186,7 +181,6 @@ def _(md_correct_vs_wrong, mo, plt, snr_db, var_a_est_correct, var_wrong):
     _axs.set_xlabel("SNR [dB]")
     _axs.set_ylabel(r"Empirical Variance of $\hat{A}$")
 
-
     mo.hstack(
         [mo.mpl.interactive(_fig), mo.md(md_correct_vs_wrong)],
         widths=[1.75, 1],
@@ -199,6 +193,7 @@ def _():
     import marimo as mo
     import numpy as np
     import matplotlib.pyplot as plt
+
     return mo, np, plt
 
 
@@ -207,7 +202,7 @@ def _():
     md_emp_mean = r"""
     ### Mean of the Estimator
 
-    The figure on the left shows the empirical mean of the estimate $\hat{A}$ over a varying number of MC trials $M$ (for fixed $N$), i.e., $$\frac{1}{M}\sum_{m=1}^{M} \hat{A}[m],$$ where each estimate $\hat{A}[m]$ stems from a different MC run with $N$ independent measurement samples $y[n]$.
+    The figure on the left shows the empirical mean of the estimate $\hat{A}$ over a varying number of MC trials $M$ (for fixed $N$), i.e., \[\frac{1}{M}\sum_{m=1}^{M} \hat{A}[m],\] where each estimate $\hat{A}[m]$ stems from a different MC run with $N$ independent measurement samples $y[n]$.
 
     The slider above the figure allows changing the value of $N$.
     In particular, increasing $N$ improves the quality of the estimator (reducing its variance), i.e., even for a small number of MC trials, its value is close to $A$.

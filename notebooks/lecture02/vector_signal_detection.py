@@ -1,13 +1,12 @@
 import marimo
 
-__generated_with = "0.15.2"
+__generated_with = "0.24.0"
 app = marimo.App(width="medium")
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     # Detection of Vector Signals in Gaussian Noise
 
     _Author:_ Karl-Ludwig Besser (Linköping University, Sweden)
@@ -24,8 +23,7 @@ def _(mo):
     \end{equation*}
 
     with known vector signals $a$ and $b$, and Gaussian noise $w\sim\mathcal{N}(0, \sigma^2 I)$.
-    """
-    )
+    """)
     return
 
 
@@ -92,7 +90,10 @@ def _(X, Y, a, b, gamma, md_bayes, mo, plt, slider_prob_h0, statistic):
     _ax.set_ylabel("Second component $y[2]$")
 
     mo.hstack(
-        [mo.mpl.interactive(_fig), mo.vstack([mo.md(md_bayes), slider_prob_h0])],
+        [
+            mo.mpl.interactive(_fig),
+            mo.vstack([mo.md(md_bayes), slider_prob_h0]),
+        ],
         widths=[1.75, 1],
     )
     return
@@ -100,7 +101,9 @@ def _(X, Y, a, b, gamma, md_bayes, mo, plt, slider_prob_h0, statistic):
 
 @app.cell
 def _(mo):
-    slider_sigma = mo.ui.slider(0.5, 5, 0.1, 1, label="Noise variance $\\sigma^2$")
+    slider_sigma = mo.ui.slider(
+        0.5, 5, 0.1, 1, label="Noise variance $\\sigma^2$"
+    )
     slider_a = mo.ui.array(
         [
             mo.ui.slider(-3, 3, 0.1, 1, label="$a_x$"),
@@ -176,6 +179,7 @@ def _():
     import numpy as np
     from scipy import stats
     import matplotlib.pyplot as plt
+
     return mo, np, plt, stats
 
 

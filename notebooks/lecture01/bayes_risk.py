@@ -1,13 +1,12 @@
 import marimo
 
-__generated_with = "0.15.2"
+__generated_with = "0.24.0"
 app = marimo.App(width="medium")
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     # Bayes Risk and Probability of Error
 
     _Author:_ Karl-Ludwig Besser (Linköping University, Sweden)
@@ -16,16 +15,15 @@ def _(mo):
     This notebooks provides an interactive visualization of the Bayesian approach to hypothesis testing/detection problems.
     It follows the examples given in (S. Kay, Detection Theory, Sections 3.6-3.7).
     In particular, we have the following distributions conditioned on hypotheses $\mathcal{H}_0$ and $\mathcal{H}_1$:
-    $$\mathcal{H}_0: \mathcal{N}(0, 1)\\\mathcal{H}_1: \mathcal{N}(A, 1)$$
+    \[\mathcal{H}_0: \mathcal{N}(0, 1)\\\mathcal{H}_1: \mathcal{N}(A, 1)\]
     with prior probabilities $\Pr(\mathcal{H}_0)$ and $\Pr(\mathcal{H}_1) = 1-\Pr(\mathcal{H}_0)$, respectively.
 
     The optimal threshold (in terms of the likelihood ratio) is given as
-    $$\gamma = \frac{\Pr(\mathcal{H}_0)}{\Pr(\mathcal{H}_1)},$$
+    \[\gamma = \frac{\Pr(\mathcal{H}_0)}{\Pr(\mathcal{H}_1)},\]
     which translates to the optimal threshold in terms of the sample value $x$ as
-    $$t = \frac{A}{2} + \frac{\ln{\gamma}}{A},$$
+    \[t = \frac{A}{2} + \frac{\ln{\gamma}}{A},\]
     and we decide for $\mathcal{H}_1$ if $x>t$.
-    """
-    )
+    """)
     return
 
 
@@ -91,20 +89,18 @@ def _(
 
 @app.cell
 def _(errors, mo):
-    mo.md(
-        f"""
+    mo.md(f"""
     ## Error Probabilities
 
     With the selected parameters, you obtain the following total error probabilities $P_{{\\textnormal{{err}}}}$ with
-    $$P_{{\\textnormal{{err}}}} = \\Pr(\\mathcal{{H}}_1 \\mid \\mathcal{{H}}_0) \\Pr(\\mathcal{{H}}_0) + \\Pr(\\mathcal{{H}}_0 \\mid \\mathcal{{H}}_1) \\Pr(\\mathcal{{H}}_1).$$
+    \[P_{{\\textnormal{{err}}}} = \\Pr(\\mathcal{{H}}_1 \\mid \\mathcal{{H}}_0) \\Pr(\\mathcal{{H}}_0) + \\Pr(\\mathcal{{H}}_0 \\mid \\mathcal{{H}}_1) \\Pr(\\mathcal{{H}}_1).\]
     This value corresponds to the Bayes risk for the weights $C_{{00}}=C_{{11}}=0$ and $C_{{01}} = C_{{10}} = 1$.
 
     | Threshold | $P_{{\\textnormal{{err}}}}$ |
     |:---|---:|
     | Optimal threshold | $P_{{\\textnormal{{err}}}}={errors["opt"]:.3f}$ |
     | Selected threshold | $P_{{\\textnormal{{err}}}}={errors["selected"]:.3f}$ |
-    """
-    )
+    """)
     return
 
 
@@ -195,6 +191,7 @@ def _():
     import numpy as np
     from scipy import stats
     import matplotlib.pyplot as plt
+
     return mo, np, plt, stats
 
 

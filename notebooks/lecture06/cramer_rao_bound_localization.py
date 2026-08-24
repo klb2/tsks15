@@ -1,13 +1,12 @@
 import marimo
 
-__generated_with = "0.15.2"
+__generated_with = "0.24.0"
 app = marimo.App(width="medium")
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     # Fisher-Information Matrix and Cramer-Rao Bound: Localization Example
 
     _Author:_ Karl-Ludwig Besser (Linköping University, Sweden)
@@ -33,8 +32,7 @@ def _(mo):
 
 
     A visualization of this setup together with the calculated Fisher information matrix and Cramer-Rao bound can be found below.
-    """
-    )
+    """)
     return
 
 
@@ -110,7 +108,7 @@ def _(crb_matrix, fisher_matrix):
     md_fim = rf"""
     ## Fisher Information Matrix
 
-    $$I(\theta) = \begin{{pmatrix}}{fisher_matrix[0, 0]:.3f} & {fisher_matrix[0, 1]:.3f}\\{fisher_matrix[1, 0]:.3f} & {fisher_matrix[1, 1]:.3f}\end{{pmatrix}}$$
+    \[I(\theta) = \begin{{pmatrix}}{fisher_matrix[0, 0]:.3f} & {fisher_matrix[0, 1]:.3f}\\{fisher_matrix[1, 0]:.3f} & {fisher_matrix[1, 1]:.3f}\end{{pmatrix}}\]
     """
 
     if crb_matrix is None:
@@ -125,7 +123,7 @@ def _(crb_matrix, fisher_matrix):
         md_crb = rf"""
     ## Cramer-Rao Bound
 
-    $$I^{{-1}}(\theta) = \begin{{pmatrix}}{crb_matrix[0, 0]:.3f} & {crb_matrix[0, 1]:.3f}\\{crb_matrix[1, 0]:.3f} & {crb_matrix[1, 1]:.3f}\end{{pmatrix}}$$
+    \[I^{{-1}}(\theta) = \begin{{pmatrix}}{crb_matrix[0, 0]:.3f} & {crb_matrix[0, 1]:.3f}\\{crb_matrix[1, 0]:.3f} & {crb_matrix[1, 1]:.3f}\end{{pmatrix}}\]
         """
 
     md_matrices = "\n\n".join((md_fim, md_crb))
@@ -138,6 +136,7 @@ def _():
     import numpy as np
     from scipy import stats
     import matplotlib.pyplot as plt
+
     return mo, np, plt, stats
 
 

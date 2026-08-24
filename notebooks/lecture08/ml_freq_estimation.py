@@ -1,13 +1,12 @@
 import marimo
 
-__generated_with = "0.16.1"
+__generated_with = "0.24.0"
 app = marimo.App(width="medium")
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     # Maximum Likelihood Estimation
 
     _Author:_ Karl-Ludwig Besser (Linköping University, Sweden)
@@ -16,12 +15,11 @@ def _(mo):
     This notebooks illustrates the maximum likelihood (ML) estimation of an unknown frequency.
     In particular, it is meant to visualize the influence of the number of samples $N$ and the noise variance $\sigma^2$ on the variance of the ML estimator.
 
-    We observe $N$ measurements $$y[n]=\cos\left(2\pi f \frac{n}{N}\right) + w[n]$$ which are corrupted by iid Gaussian noise ${w[n]\sim\mathcal{N}(0, \sigma^2)}$. (Note that this is slightly different to the problem in the lecture as we introduce the normalization by $N$ inside the cosine to simplify the computations.)
+    We observe $N$ measurements \[y[n]=\cos\left(2\pi f \frac{n}{N}\right) + w[n]\] which are corrupted by iid Gaussian noise ${w[n]\sim\mathcal{N}(0, \sigma^2)}$. (Note that this is slightly different to the problem in the lecture as we introduce the normalization by $N$ inside the cosine to simplify the computations.)
 
     The goal of ML estimation is to find the frequency $\hat{f}_{\text{ML}}$ that maximizes the likelihood function $p(y;f)$.
     Due to the nonlinear nature of the estimation problem, we use the numerical optimization routine [`scipy.optimize.minimize`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html) from the scipy library.
-    """
-    )
+    """)
     return
 
 
@@ -127,6 +125,7 @@ def _(n, np, num_samples):
         _part1 = np.sum(np.cos(2 * np.pi * f / num_samples * n) ** 2)
         _part2 = 2 * np.sum(y * np.cos(2 * np.pi * f / num_samples * n))
         return _part1 - _part2
+
     return (ml_opt_function,)
 
 
@@ -136,6 +135,7 @@ def _():
     import numpy as np
     from scipy import optimize
     import matplotlib.pyplot as plt
+
     return mo, np, optimize, plt
 
 

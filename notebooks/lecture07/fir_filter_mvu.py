@@ -1,13 +1,12 @@
 import marimo
 
-__generated_with = "0.15.0"
+__generated_with = "0.24.0"
 app = marimo.App(width="medium")
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     # Example: FIR Filter (Tapped Delay Line)
 
     _Author:_ Karl-Ludwig Besser (Linköping University, Sweden)
@@ -20,20 +19,17 @@ def _(mo):
 
 
     In this notebook, you can find an estimation of the filter parameters ($b_i$ in the illustration) using the minimum-variance unbiased (MVU) estimator.
-    """
-    )
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     ## Probing Signals
 
     For the following simulation, you can select a probing signal $x[n]$ and see how it effects the estimate and Cramer-Rao lower bound/variances of the estimates $\hat{b}_i$.
-    """
-    )
+    """)
     return
 
 
@@ -145,6 +141,7 @@ def _():
     import numpy as np
     from scipy import linalg, signal
     import matplotlib.pyplot as plt
+
     return linalg, mo, np, plt
 
 

@@ -1,13 +1,12 @@
 import marimo
 
-__generated_with = "0.16.5"
+__generated_with = "0.24.0"
 app = marimo.App(width="medium")
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     # Detecting an Unknown Signal in Gaussian Noise
 
     _Author:_ Karl-Ludwig Besser (Linköping University, Sweden)
@@ -37,15 +36,13 @@ def _(mo):
     1. Full knowledge
     2. Only knowledge about the noise statistics
     3. No knowledge about the parameters
-    """
-    )
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     ### Full Knowledge
 
     The first case is the case that we know both the DC level $A$ and the noise power $\sigma^2$.
@@ -55,15 +52,13 @@ def _(mo):
     \begin{equation*}
     P_{\text{D,full}} = Q\left(Q^{-1}\left(P_{\text{FA}}\right) - \sqrt{\frac{NA^2}{\sigma^2}}\right)
     \end{equation*}
-    """
-    )
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     ### Partial Knowledge
 
     Next, we drop the assumption that we have knowledge about the DC level $A$.
@@ -75,15 +70,13 @@ def _(mo):
     \begin{equation*}
     P_{\text{D}} = Q_{\chi^{'2}_1({NA^2}/{\sigma^2})}\left(Q_{\chi^2_1}^{-1}\left(P_{\text{FA}}\right)\right)
     \end{equation*}
-    """
-    )
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     ### No Knowledge
 
     Finally, we assume that we do not have any knowledge about $A$ and $\sigma^2$.
@@ -92,8 +85,7 @@ def _(mo):
     \begin{equation*}
     Q_{\mathrm{F}'_{1,N-1}(NA^2/\sigma^2)}\left({Q^{-1}_{F_{1,N-1}}}\left(P_{\text{FA}}\right)\right)
     \end{equation*}
-    """
-    )
+    """)
     return
 
 
@@ -219,6 +211,7 @@ def _():
     import numpy as np
     from scipy import stats
     import matplotlib.pyplot as plt
+
     return mo, np, plt, stats
 
 

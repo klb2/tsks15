@@ -1,13 +1,12 @@
 import marimo
 
-__generated_with = "0.15.2"
+__generated_with = "0.24.0"
 app = marimo.App(width="medium")
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     # Pre-Whitening
 
     _Author:_ Karl-Ludwig Besser (Linköping University, Sweden)
@@ -23,9 +22,8 @@ def _(mo):
     \begin{pmatrix}y_x\\ y_y\end{pmatrix} = \begin{pmatrix}b_x\\ b_y\end{pmatrix} + \begin{pmatrix}w_x\\ w_y\end{pmatrix}
     \end{equation*}
 
-    where $w\sim\mathcal{N}(0, \Gamma)$ and $$\Gamma = \begin{pmatrix}\sigma^2_x & \rho\sigma_x\sigma_y\\ \rho\sigma_x\sigma_y & \sigma^2_y\end{pmatrix}$$
-    """
-    )
+    where $w\sim\mathcal{N}(0, \Gamma)$ and \[\Gamma = \begin{pmatrix}\sigma^2_x & \rho\sigma_x\sigma_y\\ \rho\sigma_x\sigma_y & \sigma^2_y\end{pmatrix}\]
+    """)
     return
 
 
@@ -71,8 +69,7 @@ def _(
 
 @app.cell
 def _(b, b_transform, mo, str_cov_mat, str_whitening_mat):
-    mo.md(
-        rf"""
+    mo.md(rf"""
     ## Summary of Parameters
 
     In the original space, we have the center $b$ as
@@ -98,8 +95,7 @@ def _(b, b_transform, mo, str_cov_mat, str_whitening_mat):
     \begin{{equation*}}
     b' = \Gamma^{{-1 / 2}} b = \begin{{pmatrix}} {b_transform[0]:.2f} \\ {b_transform[1]:.2f} \end{{pmatrix}}
     \end{{equation*}}
-    """
-    )
+    """)
     return
 
 
@@ -120,6 +116,7 @@ def _():
     import numpy as np
     from scipy import stats
     import matplotlib.pyplot as plt
+
     return mo, np, plt, stats
 
 
