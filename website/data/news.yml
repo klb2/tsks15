@@ -7,3 +7,8 @@
   text: >
     I uploaded the slides from today's lecture to Lisam. Do not forget to sign
     up for the labs on Lisam.
+
+- date: 2026-09-08
+  text: >
+    I released a new interactive notebook illustrating the concepts of Bayesian
+    (multiple) hypothesis testing (prior, likelihood, and posterior).
