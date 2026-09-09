@@ -12,3 +12,9 @@
   text: >
     I released a new interactive notebook illustrating the concepts of Bayesian
     (multiple) hypothesis testing (prior, likelihood, and posterior).
+
+- date: 2026-09-09
+  text: >
+    I released a new interactive notebook illustrating the Cramer-Rao bound for
+    the frequency estimation example that we discussed at the end of today's
+    lecture.
