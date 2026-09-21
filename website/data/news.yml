@@ -18,3 +18,8 @@
     I released a new interactive notebook illustrating the Cramer-Rao bound for
     the frequency estimation example that we discussed at the end of today's
     lecture.
+
+- date: 2026-09-21
+  text: >
+    I updated the notebook with the FIR filter example from today's lecture. It
+    now includes an additional probing signal and more explanations.

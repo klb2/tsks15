@@ -19,6 +19,11 @@ def _(mo):
 
 
     In this notebook, you can find an estimation of the filter parameters ($b_i$ in the illustration) using the minimum-variance unbiased (MVU) estimator.
+
+    /// note | Different Notation
+    In the lecture, we called the probing signal $s[n]$ and the coefficients $h[i]$.
+    To be consistent with the illustration above, we call the probing signal $x[n]$ and the coefficients $b_i$ in this notebook.
+    ///
     """)
     return
 
@@ -29,6 +34,20 @@ def _(mo):
     ## Probing Signals
 
     For the following simulation, you can select a probing signal $x[n]$ and see how it effects the estimate and Cramer-Rao lower bound/variances of the estimates $\hat{b}_i$.
+
+    Recall from the lecture that there are two desirable properties for a good probing signal $x[n]$:
+    1. High energy (large $\sum_{n=0}^{N-1} x^2[n]$)
+    2. Orthogonal to itself when shifted ($\sum_{n=0}^{N-1} x[n-i] x[n-j] \approx 0$ for all $i\neq j$)
+
+    In the following, you can select one of five pre-defined probing signals with different properties:
+
+    | Signal | Notable Properties | Observation | Property of Interest from Above |
+    |--------|--------------------|-------------|---------------------------------|
+    | Sine | Sine wave (simple and deterministic signal) | Baseline (medium variance of estimation, no decoupling) | --- |
+    | Sine (High Energy) | Scaled sine wave with larger amplitude | Lower variance due to higher energy. No decoupling | 1 (high energy) |
+    | Random Binary | (Pseudo-)Random sequence of 0s and 1s | Orthogonal to itself $\rightarrow$ decoupling. Good performance, even with low signal energy | 2 (orthogonal) |
+    | Random Binary (High Energy) | (Pseudo-)Random sequence of 0s and 2s | Orthogonal to itself and higher energy $\rightarrow$ even better performance | 1 (high energy) and 2 (orthogonal) |
+    | Pulse | Extremely simple structure. Would be great in the noiseless case | Bad performance | --- |
     """)
     return
 
@@ -43,6 +62,7 @@ def _(dd_probing_signal):
 def _(
     filter_coeff,
     md_estimation,
+    md_signal_properties,
     mo,
     output_signal,
     plt,
@@ -71,15 +91,41 @@ def _(
 
     _fig.tight_layout()
 
-    mo.hstack([mo.mpl.interactive(_fig), mo.md(md_estimation)], widths=[2.5, 1])
+    mo.hstack(
+        [
+            mo.vstack([mo.md(md_signal_properties), mo.mpl.interactive(_fig)]),
+            mo.md(md_estimation),
+        ],
+        widths=[2.5, 1],
+    )
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    ## Observations
+
+    There are a few observations you should be able to make.
+
+    1. Increasing the signal energy reduces the variance.
+    2. The random sequences are (almost) orthogonal to themselves when shifted. The CRB matrix is almost diagonal, i.e., the parameters decouple.
+      - Related to the decoupling: For the random input, the variances of the individual coefficients are almost the same. For the sine waves, the ones for $\hat{b}_1$ and $\hat{b}_2$ are siginificantly larger.
+    3. The random sequences have a very good performance with very little energy.
+      - At about the same energy as the pulse, the binary random sequence achieves a siginificantly lower estimation variance.
+      - The higher energy random signal has a fraction of the high energy sine wave but a better performance
+    """)
     return
 
 
 @app.cell
 def _(dd_probing_signal, filter_coeff, linalg, noise, np):
     probing_signal = dd_probing_signal.value
+    probing_signal_name = dd_probing_signal.selected_key
 
-    probing_matrix = linalg.toeplitz(probing_signal, np.zeros(len(filter_coeff)))
+    probing_matrix = linalg.toeplitz(
+        probing_signal, np.zeros(len(filter_coeff))
+    )
     output_signal = probing_matrix @ filter_coeff + noise
 
     est_filter_coeff = (
@@ -89,7 +135,14 @@ def _(dd_probing_signal, filter_coeff, linalg, noise, np):
     )
     crb_filter_coeff = linalg.inv(probing_matrix.T @ probing_matrix)
     var_estimates = np.diag(crb_filter_coeff)
-    return est_filter_coeff, output_signal, probing_signal, var_estimates
+    return (
+        crb_filter_coeff,
+        est_filter_coeff,
+        output_signal,
+        probing_signal,
+        probing_signal_name,
+        var_estimates,
+    )
 
 
 @app.cell
@@ -97,9 +150,15 @@ def _(mo, np, num_timeslots, t):
     dd_probing_signal = mo.ui.dropdown(
         options={
             "Sine": 2 * np.sin(t),
-            "Sine High Energy": 10 * np.sin(t),
+            "Sine (High Energy)": 10 * np.sin(t),
             "Random Binary": np.random.randint(2, size=num_timeslots),
-            "Pulse": np.where(np.arange(num_timeslots) < num_timeslots // 2, 1, 0),
+            "Random Binary (High Energy)": 2
+            * np.random.randint(2, size=num_timeslots),
+            # "Random Gaussian": 0.5 * np.random.randn(num_timeslots),
+            # "Random Gaussian (High Energy)": np.random.randn(num_timeslots),
+            "Pulse": np.where(
+                np.arange(num_timeslots) < num_timeslots // 2, 1, 0
+            ),
         },
         value="Sine",
         label="Select a probing signal $x$",
@@ -117,12 +176,24 @@ def _(np):
 
 
 @app.cell
-def _(est_filter_coeff, filter_coeff, var_estimates):
+def _(
+    crb_filter_coeff,
+    est_filter_coeff,
+    filter_coeff,
+    np,
+    probing_signal,
+    probing_signal_name,
+    var_estimates,
+):
     _table_rows = [
         f"| {h:.2f} | {e:.2f} | {v:.3f} |"
         for h, e, v in zip(filter_coeff, est_filter_coeff, var_estimates)
     ]
     _table_body = "\n".join(_table_rows)
+    _crb_matrix_rows = [
+        " & ".join([f"{_k:.2f}" for _k in _row]) for _row in crb_filter_coeff
+    ]
+    _crb_matrix_body = r"\\".join(_crb_matrix_rows)
     md_estimation = f"""
     ## Estimation Results
 
@@ -131,8 +202,23 @@ def _(est_filter_coeff, filter_coeff, var_estimates):
     | Coefficient $b$ | Estimate $\\hat{{b}}$ | Variance of $\\hat{{b}}$ |
     |----------------:|----------------------:|-------------------------:|
     {_table_body}
+
+
+    Below, you can find the full CRB matrix.  
+    The important observation is that it is (almost) a diagonal matrix for the random input signal.
+
+    \\begin{{equation*}}
+    \\mathrm{{CRB}} = \\begin{{pmatrix}}
+    {_crb_matrix_body}
+    \\end{{pmatrix}}
+    \\end{{equation*}}
     """
-    return (md_estimation,)
+
+    md_signal_properties = f"""
+    Selected probing signal: {probing_signal_name}  
+    Signal energy: $\\sum_{{n=0}}^{{N-1}} x[n]^2 = {np.sum(probing_signal**2):.2f}$
+    """
+    return md_estimation, md_signal_properties
 
 
 @app.cell
