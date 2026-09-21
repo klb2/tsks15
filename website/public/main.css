@@ -247,3 +247,38 @@ code {
   background: var(--color-bg-dark);
   color: var(--color-accent);
 }
+
+.admonition {
+  border-left: var(--spacing1) solid var(--admonition-color);
+  padding: var(--spacing2) var(--spacing3);
+  display: flex;
+  flex-direction: column;
+}
+
+.admonition-title {
+  color: var(--admonition-color);
+  font-weight: bold;
+  margin-bottom: var(--spacing1);
+}
+
+.admonition-title::before {
+  content: "";
+  background-image: var(--admonition-icon);
+  background-size: 100% 100%;
+  margin-right: var(--spacing1);
+  display: inline-block;
+  height: var(--font-size-m);
+  width: var(--font-size-m);
+}
+
+.admonition.note {
+  --admonition-color: #339;
+  /*url("https://www.svgrepo.com/show/80749/information-button.svg")*/
+  --admonition-icon: url("assets/icon-info.svg");
+}
+
+.admonition.warning {
+  --admonition-color: #933;
+  /*url("https://www.svgrepo.com/show/153651/attention-sign.svg")*/
+  --admonition-icon: url("assets/icon-warning.svg");
+}

@@ -5,6 +5,13 @@
       <h1>Python Notebooks</h1>
       <p>On this page, you can find a list of Marimo notebooks that are
       supplementary material for the course.</p>
+      <p class="admonition note">
+      <span class="admonition-title">Suggestion</span>
+      <span class="admonition-body">You can toggle the view (hide the code
+      and only see the real output) of the Marimo notebooks by clicking on the
+      button in the bottom left corner (below the "Save file" button).
+      Alternatively, you can use the keyboard shortcut <code>Ctrl+.</code>.</span>
+      </p>
 
       {% for lecture, notebooks in data.items() | sort %}
       <h2>{{ lecture | replace("-", " ") | title }}</h2>
