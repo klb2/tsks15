@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.24.0"
+__generated_with = "0.24.2"
 app = marimo.App(width="medium")
 
 
@@ -15,7 +15,12 @@ def _(mo):
     This notebooks illustrates the maximum likelihood (ML) estimation of an unknown frequency.
     In particular, it is meant to visualize the influence of the number of samples $N$ and the noise variance $\sigma^2$ on the variance of the ML estimator.
 
-    We observe $N$ measurements \[y[n]=\cos\left(2\pi f \frac{n}{N}\right) + w[n]\] which are corrupted by iid Gaussian noise ${w[n]\sim\mathcal{N}(0, \sigma^2)}$. (Note that this is slightly different to the problem in the lecture as we introduce the normalization by $N$ inside the cosine to simplify the computations.)
+    We observe $N$ measurements \[y[n]=\cos\left(2\pi f \frac{n}{N}\right) + w[n]\] which are corrupted by iid Gaussian noise ${w[n]\sim\mathcal{N}(0, \sigma^2)}$.
+
+    /// admonition | Differences to Lecture
+    Note that the above model is slightly different to the problem in the lecture.
+    In this notebook, we introduce the normalization by $N$ inside the cosine to simplify the computations.
+    ///
 
     The goal of ML estimation is to find the frequency $\hat{f}_{\text{ML}}$ that maximizes the likelihood function $p(y;f)$.
     Due to the nonlinear nature of the estimation problem, we use the numerical optimization routine [`scipy.optimize.minimize`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html) from the scipy library.
@@ -193,7 +198,9 @@ def _(noise, signal):
 @app.cell
 def _(measurements, ml_opt_function, optimize):
     opt_results = [
-        optimize.minimize(ml_opt_function, x0=0.5, args=(_y,), bounds=[(0, 1)]).x
+        optimize.minimize(
+            ml_opt_function, x0=0.5, args=(_y,), bounds=[(0, 1)]
+        ).x
         for _y in measurements
     ]
     return (opt_results,)
@@ -210,7 +217,8 @@ def _(measurements, n, np, num_samples, var_noise):
             (
                 measurements.T
                 - np.tile(
-                    np.cos(2 * np.pi * param_line / num_samples * n).T, (2, 1, 1)
+                    np.cos(2 * np.pi * param_line / num_samples * n).T,
+                    (2, 1, 1),
                 ).T
             )
             ** 2,
